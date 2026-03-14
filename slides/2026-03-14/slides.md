@@ -1260,6 +1260,59 @@ glowSeed: 100
 -->
 
 ---
+glowSeed: 260
+---
+
+# Community Momentum
+
+<div grid="~ cols-2" gap-6 mt-4>
+  <div
+    v-click="1"
+    :class="$clicks < 1 ? 'translate-x--8 op-0' : 'translate-x-0 op-100'"
+    transition duration-500 ease-in-out
+    border="2 solid indigo-800/50" rounded-lg bg="indigo-900/10" backdrop-blur-sm p-4
+  >
+    <div text-sm op-70 mb-2 flex items-center gap-2>
+      <div i-ri:star-smile-line />
+      Star History
+    </div>
+    <a href="https://www.star-history.com/#memohai/Memoh&type=date&legend=top-left" target="_blank">
+      <img src="/star-history.svg" rounded-lg border="1 solid white/10" w-full />
+    </a>
+  </div>
+
+  <div
+    v-click="2"
+    :class="$clicks < 2 ? 'translate-x-8 op-0' : 'translate-x-0 op-100'"
+    transition duration-500 ease-in-out
+    border="2 solid cyan-800/50" rounded-lg bg="cyan-900/10" backdrop-blur-sm p-4
+  >
+    <div text-sm op-70 mb-2 flex items-center gap-2>
+      <div i-ri:team-line />
+      Contributors
+    </div>
+    <a href="https://github.com/memohai/Memoh/graphs/contributors" target="_blank">
+      <img src="/contributors.svg" rounded-lg border="1 solid white/10" w-full />
+    </a>
+  </div>
+</div>
+
+<div
+  v-click="3"
+  :class="$clicks < 3 ? 'translate-y-5 op-0' : 'translate-y-0 op-100'"
+  transition duration-500 ease-in-out
+  mt-4 text-center text-sm op-70
+>
+  数据持续增长，说明这个方向不仅技术可行，而且社区和开发者都在真实使用。
+</div>
+
+<!--
+这里补一页社区信号。左边是 Star History，展示项目增长趋势；右边是 Contributors，展示不是一个人单点开发，而是社区共建。
+这两张图都来自 README：star-history.com 和 contrib.rocks，并且都可以点击跳转到原始页面。
+讲的时候可以用一句话收口：技术路线对不对，最终会体现在持续增长的用户和贡献者上。
+-->
+
+---
 layout: center
 class: text-center
 glowSeed: 233
