@@ -11,6 +11,8 @@ drawings:
 mdc: true
 glowSeed: 233
 duration: 20min
+addons:
+  - '@acboxy/shared'
 ---
 
 <div flex flex-col items-center gap-4 relative>

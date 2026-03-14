@@ -6,35 +6,52 @@ settings:
 
 importers:
 
-  .: {}
-
-  slides/2026-03-14:
-    dependencies:
+  .:
+    devDependencies:
+      '@iconify-json/carbon':
+        specifier: ^1.2.19
+        version: 1.2.19
+      '@iconify-json/mdi':
+        specifier: ^1.2.3
+        version: 1.2.3
+      '@iconify-json/ri':
+        specifier: ^1.2.10
+        version: 1.2.10
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.73
+        version: 1.2.73
       '@slidev/cli':
         specifier: ^52.14.1
         version: 52.14.1(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.15)(@vue/compiler-sfc@3.5.30)(markdown-it@14.1.1)(postcss@8.5.8)
       '@slidev/theme-default':
         specifier: latest
         version: 0.25.0
-      vue:
-        specifier: ^3.5.29
-        version: 3.5.30(typescript@5.9.3)
-    devDependencies:
-      '@iconify-json/carbon':
+      '@slidev/types':
         specifier: latest
-        version: 1.2.19
-      '@iconify-json/mdi':
-        specifier: latest
-        version: 1.2.3
-      '@iconify-json/ri':
-        specifier: latest
-        version: 1.2.10
-      '@iconify-json/simple-icons':
-        specifier: latest
-        version: 1.2.73
+        version: 52.14.1(@nuxt/kit@3.21.2)(@vue/compiler-sfc@3.5.30)(typescript@5.9.3)(vite@7.3.1(@types/node@22.19.15)(jiti@2.6.1)(yaml@2.8.2))
+      '@types/seedrandom':
+        specifier: ^3.0.8
+        version: 3.0.8
       seedrandom:
         specifier: ^3.0.5
         version: 3.0.5
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      unocss:
+        specifier: latest
+        version: 66.6.6(vite@7.3.1(@types/node@22.19.15)(jiti@2.6.1)(yaml@2.8.2))
+      vue:
+        specifier: ^3.5.29
+        version: 3.5.30(typescript@5.9.3)
+
+  packages/shared: {}
+
+  slides/2026-03-14:
+    dependencies:
+      '@acboxy/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
 
 packages:
 
@@ -948,6 +965,9 @@ packages:
 
   '@types/node@22.19.15':
     resolution: {integrity: sha512-F0R/h2+dsy5wJAUe3tAU6oqa2qbWY5TpNfL/RGmo1y38hiyO1w3x2jPtt76wmuaJI4DQnOBu21cNXQ2STIUUWg==}
+
+  '@types/seedrandom@3.0.8':
+    resolution: {integrity: sha512-TY1eezMU2zH2ozQoAFAQFOPpvP15g+ZgSfTZt31AUUH/Rxtnz3H+A/Sv1Snw2/amp//omibc+AEkTaA8KUeOLQ==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -3916,6 +3936,8 @@ snapshots:
   '@types/node@22.19.15':
     dependencies:
       undici-types: 6.21.0
+
+  '@types/seedrandom@3.0.8': {}
 
   '@types/trusted-types@2.0.7':
     optional: true
