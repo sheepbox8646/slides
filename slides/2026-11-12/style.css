@@ -1,0 +1,193 @@
+/*
+ * Kibotos deck theme.
+ * Source of truth: kibotos-landing/src/style.css and the Kibotos logo manual (brand colors 2.0, typography 3.0).
+ * Dark only. Base Black page, Collab Blue as the only accent, Poppins Bold headlines.
+ */
+
+:root {
+  --k-bg: #2e2b26;
+  --k-bg-deep: #2a2722;
+  --k-card: #36332d;
+  --k-inset: #282520;
+  --k-fg: #ffffff;
+  --k-muted: #abaaa8;
+  --k-subtle: #82807d;
+  --k-primary: #809aef;
+  --k-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --slidev-theme-primary: #809aef;
+  --slidev-code-background: #282520 !important;
+  --color-primary: #809aef;
+  /* Landing component tokens (BarChart and friends read these). */
+  --color-foreground: #ffffff;
+  --color-muted-foreground: #abaaa8;
+  --color-subtle: #82807d;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-danger: #f87171;
+}
+
+.slidev-layout,
+#slide-content {
+  font-family: "Poppins", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  color: var(--k-fg);
+}
+
+/* The page colour lives in global-bottom.vue; layouts stay transparent above it. */
+.dark #slide-content,
+#slide-content,
+.slidev-layout {
+  background: transparent !important;
+}
+
+.slidev-layout {
+  padding: 44px 56px 64px;
+}
+
+.slidev-layout h1 {
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 0;
+}
+
+:where(.slidev-layout) :where(p, li) {
+  color: var(--k-muted);
+}
+
+::selection {
+  background-color: rgb(128 154 239 / 0.35);
+}
+
+/* Entrance motion: the landing's .reveal (fade-up 14 px, 0.7 s, expo-out), applied to v-click. */
+.slidev-vclick-target {
+  transition:
+    opacity 0.7s var(--k-ease-out),
+    transform 0.7s var(--k-ease-out);
+}
+.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
+
+@keyframes k-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.reveal {
+  animation: k-fade-up 0.7s var(--k-ease-out) both;
+}
+
+/* Slide transition: a plain cross-fade, no blur. */
+.k-fade-enter-active,
+.k-fade-leave-active {
+  transition: opacity 0.45s ease;
+}
+.k-fade-enter-from,
+.k-fade-leave-to {
+  opacity: 0;
+}
+
+/* ---- Isometric line drawings, verbatim from the landing ---- */
+.iso-stage {
+  background-color: #282520;
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.07) 1px, transparent 1.3px);
+  background-size: 14px 14px;
+  background-position: 7px 7px;
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+.iso-stage-bare {
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.07) 1px, transparent 1.3px);
+  background-size: 14px 14px;
+  background-position: 7px 7px;
+  mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+}
+.iso-solid path,
+.iso-solid ellipse {
+  stroke: #59554d;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+.iso-solid .face-top { fill: #3b3832; }
+.iso-solid .face-left { fill: #322f2a; }
+.iso-solid .face-right { fill: #2b2824; }
+.iso-solid .ring { fill: none; }
+.iso-solid.tone-accent path,
+.iso-solid.tone-accent ellipse { stroke: var(--k-primary); }
+.iso-solid.tone-accent .face-top { fill: #474c62; }
+.iso-solid.tone-accent .face-left { fill: #404352; }
+.iso-solid.tone-accent .face-right { fill: #3a3c44; }
+.iso-solid.tone-danger path,
+.iso-solid.tone-danger ellipse { stroke: var(--color-danger); }
+.iso-solid.tone-danger .face-top { fill: #5a3a37; }
+.iso-solid.tone-danger .face-left,
+.iso-solid.tone-danger .face-right { fill: #46332f; }
+.iso-solid.tone-ghost path,
+.iso-solid.tone-ghost ellipse {
+  fill: transparent;
+  stroke: #59554d;
+  stroke-dasharray: 3 3;
+}
+.iso-label .label-leader {
+  fill: none;
+  stroke: #59554d;
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  vector-effect: non-scaling-stroke;
+}
+.iso-label .label-dot { fill: #84817b; }
+.iso-label .label-text,
+.iso-mono {
+  font-family: "Fira Code", ui-monospace, monospace;
+  font-size: 10px;
+  fill: #a29f99;
+}
+.iso-label .label-sub {
+  font-family: "Fira Code", ui-monospace, monospace;
+  font-size: 9px;
+  fill: #7a7771;
+}
+.iso-label.label-accent .label-text { fill: var(--k-primary); }
+.iso-label.label-accent .label-dot { fill: var(--k-primary); }
+.iso-label.label-accent .label-leader { stroke: rgb(128 154 239 / 0.6); }
+.iso-wire {
+  fill: none;
+  stroke: #59554d;
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  vector-effect: non-scaling-stroke;
+}
+.iso-wire.is-accent { stroke: rgb(128 154 239 / 0.8); }
+.iso-wire.is-flowing { animation: iso-flow 1.1s linear infinite; }
+.iso-move {
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease;
+}
+@keyframes iso-flow {
+  to { stroke-dashoffset: -14; }
+}
+
+/* Dashed leader used by slide callouts, same stroke as .iso-label. */
+.k-leader {
+  border-top: 1px dashed #59554d;
+}
+
+/* Slidev's default theme pulls the paragraph after an h1 up and fades it; the deck sets spacing itself. */
+.slidev-layout h1 + p {
+  margin-top: var(--k-after-title, 0.5rem);
+  opacity: 1;
+}
+
+/* FeatureCard tone="tint" from the landing: Collab Blue haze in the top-right corner. */
+.k-tint {
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgb(128 154 239 / 0.2), transparent 55%),
+    #36332d !important;
+}
