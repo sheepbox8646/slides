@@ -112,7 +112,7 @@ clicks: 3
 <div mt-6 k-card grid grid-cols-3 overflow-hidden>
   <div v-for="(c, i) in [
       { logo: '/logos/manus.svg', name: 'Manus', desc: '给 Agent 一台常驻的云电脑。', facts: [['上线', '2026.04'], ['形态', 'Cloud Computer'], ['运行', '24 小时常驻']] },
-      { logo: '/logos/grok.svg', name: 'Grok Bot', desc: '你合上电脑，它还在干活。', facts: [['上线', '2026.08'], ['形态', 'Always-on teammate'], ['价格', '订阅 $120–300/月']] },
+      { logo: '/logos/grok.svg', name: 'Grok Bot', desc: '你合上电脑，它还在干活。', facts: [['上线', '2026.08'], ['形态', 'Always-on teammate'], ['价格', '随订阅 $30–200/月']] },
       { icon: true, name: 'VPS + Claude Code', desc: '买一台 VPS，让 Agent 在上面写代码。', facts: [['上线', '一直都在'], ['形态', '自己租的 VPS'], ['运行', '24 小时常驻']] },
     ]"
     :key="c.name"
@@ -138,7 +138,7 @@ clicks: 3
 <!--
 这一年里，越来越多的产品在做同一件事。
 [click] 比如 Manus 允许你创建一个 24 小时在线的云电脑
-[click] 比如最近爆火的 grok bot 给了每个用户一个带桌面的云电脑，你可以让你的bot在上面跑一些任务
+[click] 比如最近爆火的 Grok Bot，给每个账号一台常驻的云电脑，有浏览器、文件系统和终端，你的几个 Bot 共用它、各自有自己的屏幕，你合上电脑它们还在跑任务
 [click] 还有很多小云服务商在做海外VPS，海外机房 Mac Mini 用来给你部署 claude code 上去用
 -->
 
@@ -213,14 +213,14 @@ clicks: 1
     <div mt-1 text-sm text-muted leading-relaxed>每月费用，统一口径：<br/>2 vCPU / 4 GiB，10 GiB 持久盘。</div>
     <div mt-10 text-6xl font-bold tracking-tight>$5</div>
     <div mt-3 text-sm text-muted>Memoh Go，<span text-primary>不到最便宜常驻方案的十分之一</span>。</div>
-    <div mt-auto text-xs text-subtle leading-relaxed>Memoh 的 8 核 16G 是可超分的配额池，不是独占。<br/>E2B 按需 = 每天用 2 小时、其余时间暂停。<br/>价格来自各家公开价格页，2026-11。</div>
+    <div mt-auto text-xs text-subtle leading-relaxed>Memoh 的 8 核 16G 是可超分的配额池，不是独占。<br/>E2B 按需 = 每天用 2 小时、其余时间暂停。<br/>不含账户级订阅费。价格来自各家公开价格页，2026-11。</div>
   </div>
   <div flex items-center>
     <BarChart :row-height="52" label="4 台 2C4G 的月成本" :rows="[
       { name: 'Memoh Go', value: 5, label: '$5', highlight: true },
       { name: 'E2B · 按需', value: 40, label: '≈ $40' },
-      { name: 'Hetzner · 常驻', value: 85, label: '≈ $85' },
-      { name: 'AWS t3.medium', value: 121, label: '≈ $120' },
+      { name: 'Hetzner · 常驻', value: 89, label: '≈ $89' },
+      { name: 'AWS t3.medium', value: 139, label: '≈ $139' },
       { name: 'E2B · 常驻', value: 484, label: '≈ $480' },
     ]" />
   </div>
@@ -231,7 +231,7 @@ clicks: 1
 </div>
 
 <!--
-同样是 4 台 2C4G，对比其他的 Sandbox 或者 VPS 服务商（当然，我们给的是一池可超分的配额，不是 4 台独占的机器，这正是后面要讲的）：E2B 每天只用 2 小时也要 40 美元，AWS 120，E2B 常驻要 480。
+同样是 4 台 2C4G，对比其他的 Sandbox 或者 VPS 服务商（当然，我们给的是一池可超分的配额，不是 4 台独占的机器，这正是后面要讲的）：E2B 每天只用 2 小时也要 40 美元，AWS 大约 140，E2B 常驻要 480。
 [click] 那我们为什么敢给到用户 5 美元的定价呢？
 -->
 
@@ -410,15 +410,15 @@ clicks: 4
     <div mt-5 text-sm text-muted leading-relaxed>2C4G 一台，一个月二三十美元。<br/>而且 2026 年，它在涨价。</div>
     <div v-click="4" mt-6 flex flex-col gap-2 text-sm>
       <div flex gap-2><span text-primary>↑</span><span>Hetzner 今年涨了两次价</span></div>
-      <div flex gap-2><span text-primary>↑</span><span>DDR5 内存一年涨了约 6 倍（OVH）</span></div>
+      <div flex gap-2><span text-primary>↑</span><span>DDR5 采购价一年涨了约 6 倍（OVH）</span></div>
     </div>
   </div>
   <div k-card overflow-hidden>
     <div v-for="(r, i) in [
-        { logo: '/logos/landscape/si-hetzner.svg', name: 'Hetzner / DigitalOcean', note: '经典 VPS · 2C4G', price: '$21–24/月' },
-        { logo: '/logos/landscape/fav-orgo.png', name: 'Orgo', note: '给 Agent 的常驻云电脑', price: '$29/月' },
+        { logo: '/logos/landscape/si-hetzner.svg', name: 'Hetzner / DigitalOcean', note: '经典 VPS · 2C4G', price: '$22–24/月' },
+        { logo: '/logos/landscape/fav-orgo.png', name: 'Orgo', note: '给 Agent 的常驻云电脑 · 2C8G', price: '$29/月' },
         { logo: '/logos/manus.svg', name: 'Manus Cloud Computer', note: '常驻云电脑，在订阅之外单独付费', price: '$30–50/月' },
-        { logo: '/logos/landscape/si-alibabacloud.svg', name: '阿里云轻量', note: '便宜靠新用户促销', price: '¥199/年' },
+        { logo: '/logos/landscape/si-alibabacloud.svg', name: '阿里云轻量', note: '新客活动价，限购，以官网为准', price: '约 ¥199/年起' },
       ]" :key="r.name" v-click="i < 3 ? i + 1 : 3"
       flex items-center gap-4 px-6 py-4
       :class="i > 0 ? 'border-t border-white/[0.06]' : ''"
@@ -437,9 +437,9 @@ clicks: 4
 
 <!--
 [click] DigitalOcean 这样的传统 VPS，2 核 4G 一个月二十几美元。
-[click] Orgo 这类给 Agent 做的常驻云电脑，29 美元。
+[click] Orgo 这类给 Agent 做的常驻云电脑，29 美元一台，配置是 2 核 8G。
 [click] Manus 的 Cloud Computer 要在订阅之外单独买，2 核 4G 一个月 30 美元，8G 的 50 美元，停止付费电脑里的数据会被删掉。国内的阿里云轻量看起来很便宜，但那是新用户促销价。
-[click] 而且 VPS 在涨价：Hetzner 今年涨了两次，DDR5 内存一年涨了大约 6 倍。
+[click] 而且 VPS 在涨价：Hetzner 今年 4 月和 6 月涨了两次；OVH 的创始人说，DDR5 内存的采购价比一年前涨了 6 倍。
 -->
 
 ---
@@ -460,14 +460,14 @@ clicks: 3
       <div><div text-3xl font-bold>≈ $10</div><div text-xs text-muted mt-1>每天用 2 小时，其余暂停</div></div>
       <div><div text-3xl font-bold text-primary>≈ $121</div><div text-xs text-muted mt-1>一直开着</div></div>
     </div>
-    <div mt-4 text-xs text-subtle>Pro 版单次会话最长 24 小时。</div>
+    <div mt-4 text-xs text-subtle>单次会话最长 24 小时，需 Pro 订阅（$150/月）。</div>
   </div>
   <div k-card overflow-hidden flex flex-col>
     <div px-6 pt-5 k-kicker>新一代</div>
     <div v-for="(r, i) in [
         { logo: '/logos/landscape/si-vercel.svg', name: 'Vercel / Cloudflare', note: '只按活跃 CPU 计费，内存仍按分配量。Vercel 定价示例直接假设 CPU 利用率只有 10%。' },
-        { logo: '/logos/landscape/fav-sprites.png', name: 'Fly Sprites', note: '持久磁盘，空闲约 30 秒自动休眠；10 月把 JuiceFS 换成了块设备。' },
-        { logo: '/logos/landscape/fav-aws.png', name: 'AWS AgentCore', note: '单会话最长 8 小时；8 月又补上了能常驻 14 天的 Instances。' },
+        { logo: '/logos/landscape/fav-sprites.png', name: 'Fly Sprites', note: '持久磁盘，空闲约 30 秒自动休眠；10 月起新建的 Sprite 改用块设备，替换了 JuiceFS。' },
+        { logo: '/logos/landscape/fav-aws.png', name: 'AWS AgentCore', note: '单会话最长 8 小时；8 月又补上了 Instances，最长可配到 14 天。' },
       ]" :key="r.name" v-click="i + 1"
       flex items-start gap-4 px-6 py-4
       :class="i > 0 ? 'border-t border-white/[0.06]' : ''"
@@ -484,10 +484,10 @@ clicks: 3
 </div>
 
 <!--
-我们再看 Sandbox，经典代表是 E2B。按分配量计费，每天只用 2 小时、其余时间暂停，一个月 10 美元左右；一直开着就是 121 美元。
+我们再看 Sandbox，经典代表是 E2B。按分配量计费，每天只用 2 小时、其余时间暂停，一个月 10 美元左右；一直开着就是 121 美元，而且单次会话超过 1 小时还得买 150 美元一个月的 Pro。
 [click] 除此之外，Vercel 和 Cloudflare 改成只按活跃 CPU 计费。Vercel 在定价示例里直接假设 CPU 利用率只有 10%，理由是 Agent 大部分时间在等 LLM。
 [click] Fly Sprites 给了持久磁盘，空闲 30 秒就自动休眠。
-[click] AWS AgentCore 单会话最长 8 小时，8 月又补上了能常驻 14 天的实例。两派其实在互相靠拢。
+[click] AWS AgentCore 单会话最长 8 小时，8 月又补上了 Instances，生命周期最长可以配到 14 天。两派其实在互相靠拢。
 -->
 
 ---
@@ -511,7 +511,7 @@ clicks: 2
       <div flex gap-3><span font-mono text-primary>A</span><span>按资源使用<span text-white>动态计费</span></span></div>
       <div flex gap-3><span font-mono text-primary>B</span><span>按固定<span text-white>运行时间</span>收费</span></div>
     </div>
-    <div mt-4 text-xs text-subtle leading-relaxed>统一口径：2 vCPU / 4 GiB，10 GiB 持久盘，每天活跃 2 小时。</div>
+    <div mt-4 text-xs text-subtle leading-relaxed>统一口径：2 vCPU / 4 GiB，10 GiB 持久盘，每天活跃 2 小时；按实际 CPU 计费的，按 10% 利用率估算；不含账户级订阅费。</div>
   </div>
   <div v-click="2" k-card px-8 py-7 class="k-tint">
     <div flex items-baseline gap-3>
@@ -567,7 +567,7 @@ clicks: 2
 先看经典的：E2B 和传统 VPS。
 [click] 再放上新一代的 sandbox，两派在互相靠拢。
 [click] 现在把口径换成 24 小时常驻：Sandbox 派整体往右跳，VPS 派原地不动。Sandbox 便宜的前提是，大部分时间不开机。
-注：阿里云是新客促销价，EC2 的按需口径假设用户自己写脚本启停，图上用虚线框标出。部分单价只有第三方来源。
+注：阿里云是新客促销价，EC2 的按需口径假设用户自己写脚本启停，图上用虚线框标出。按实际 CPU 计费的几家（Vercel、Cloudflare、Fly Sprites、AgentCore）按 10% 利用率估算；不含 E2B Pro、Runloop Pro 这类账户级订阅费。
 -->
 
 ---
@@ -623,14 +623,14 @@ clicks: 2
 </div>
 
 <div v-click="2" mt-6 text-center text-2xl font-bold>
-  我们不追跨可用区的 <span text-primary>99.99%</span>，换来的是<span text-primary>不到 1/5</span> 的成本。
+  我们不追跨可用区的 <span text-primary>99.99%</span>，换来的是<span text-primary>约 1/4</span> 的成本。
 </div>
 
 <!--
 先讲一个前提：Agent 电脑的负载和传统云不一样。
 传统云为 24 小时在线的服务设计，所以对可用性要求很高。比如 AWS EC2 单台的 SLA 是 99.5%，跨可用区部署才能到 99.99%。为了这几个 9，云厂商要做热迁移、多副本、多可用区，这些成本都摊进了实际上给用户的定价。
 [click] 但是我在这里提出一个反问：Agent 电脑真的需要这么高的可用性吗？它不需要部署一个 24×7 的服务，按当前负载动态调配，单台挂了，在保证数据持久化的情况下重新拉起来就行
-[click] 所以我们的取舍是：不去追跨可用区的 99.99%，换来的是不到同规格云主机五分之一的成本（后面会看到，一台 2C4G 大约 6 美元对 AWS 的 30 美元）。
+[click] 所以我们的取舍是：不去追跨可用区的 99.99%，换来的是同规格云主机大约四分之一的成本（后面会看到，一台 2C4G 大约 9 美元，AWS 要 35 美元）。
 -->
 
 ---
@@ -651,7 +651,7 @@ clicks: 3
   <div v-click="1" k-card px-6 py-6>
     <div text-sm font-semibold>业界早就这么做</div>
     <div mt-3 text-sm text-muted leading-relaxed>Firecracker 论文（NSDI '20）：</div>
-    <div mt-2 text-sm italic class="text-[#e6e6e5]">“tested oversubscription ratios of over 20x, and run in production with ratios as high as 10x.”</div>
+    <div mt-2 text-sm italic class="text-[#e6e6e5]">“We have tested memory and CPU oversubscription ratios of over 20x, and run in production with ratios as high as 10x, with no issues.”</div>
   </div>
   <div v-click="2" k-card px-6 py-6 class="k-tint">
     <div text-sm font-semibold>我们怎么做</div>
@@ -700,12 +700,12 @@ clicks: 1
     <div text-sm font-semibold>一台 2C4G 的月成本</div>
     <div mt-2 flex-1 flex items-center>
       <BarChart :row-height="44" label="一台 2C4G 的月成本" :rows="[
-        { name: '裸金属 · 按内存装满', value: 5.8, label: '≈ $6', highlight: true },
-        { name: 'AWS t3.medium', value: 30, label: '$30' },
+        { name: '裸金属 · 按内存装满', value: 9, label: '≈ $9', highlight: true },
+        { name: 'AWS t3.medium', value: 35, label: '$35' },
         { name: 'E2B · 常驻', value: 121, label: '$121' },
       ]" />
     </div>
-    <div text-xs text-subtle>裸金属按 Hetzner AX102 公开报价（16 核 / 128 GB，€159/月）估算：内存 1:1 装满 32 台，CPU 实际 2:1。</div>
+    <div text-xs text-subtle>裸金属按 Hetzner AX102 公开报价（16 核 / 128 GB，€259/月，另付 €129 安装费）估算：内存 1:1 装满 32 台，CPU 实际 2:1。AWS 含 10 GB 磁盘与公网 IPv4。</div>
   </div>
 </div>
 
@@ -713,7 +713,7 @@ clicks: 1
 <!--
 第三个观点是：我们应该重新思考上云
 至今为止 Kibotos 的所有服务都是跑在我们的 bare metal 上的，所有的内存，CPU和存储都是我们自己买的
-我举个比较经典的例子 E2B: 他的服务是构建在 AWS 上的，AWS本身已经是一个不太便宜的服务商了，E2B的报价包含了AWS的成本和他自己利润
+我举个比较经典的例子 E2B：它的托管服务是构建在 Google Cloud 上的，公有云本身已经不便宜了，E2B 的报价里包含了云厂商的成本和它自己的利润
 而自己部署裸金属，我们付的是硬件、机柜、电力和带宽，但不用再为云厂商的利润和高可用溢价买单。
 -->
 
@@ -942,13 +942,13 @@ clicks: 2
       <div v-click="1" flex gap-3><span font-mono text-primary>03</span><span>冷启动、内存回收，闲着的电脑几乎不占资源</span></div>
     </div>
     <div v-click="2" mt-6 text-sm>Early Access 期间<span text-primary font-semibold>免费</span>体验。</div>
-    <div mt-auto text-xs text-subtle>一台 2C4G，每天活跃 2 小时，每月费用。</div>
+    <div mt-auto text-xs text-subtle>一台 2C4G 的每月费用；按需 = 每天活跃 2 小时。</div>
   </div>
   <div flex items-center>
     <BarChart :row-height="52" label="一台 2C4G 的月成本" :rows="[
       { name: 'E2B · 常驻', value: 121, label: '$121' },
-      { name: 'AWS t3.medium', value: 30, label: '$30' },
-      { name: 'Hetzner · 常驻', value: 21, label: '$21' },
+      { name: 'AWS t3.medium', value: 35, label: '$35' },
+      { name: 'Hetzner · 常驻', value: 22, label: '$22' },
       { name: 'E2B · 按需', value: 10, label: '$10' },
       { name: 'Kibotos', value: 2, label: '?', highlight: $clicks >= 2 },
     ]" />
