@@ -59,7 +59,6 @@ clicks: 2
         <span text-base font-semibold>Memoh</span>
         <span ml-auto font-mono text-xs text-subtle>★ 2.8k</span>
       </div>
-      <p text-sm leading-relaxed>开源多 Agent 平台。<br/>每个 Agent 都有自己的电脑。</p>
     </div>
     <div v-click="1" k-card px-6 py-5 flex flex-col gap-2 class="k-tint">
       <div flex items-center gap-3>
@@ -67,7 +66,6 @@ clicks: 2
         <span text-base font-semibold>Kibotos</span>
         <span ml-auto font-mono text-xs text-primary>today</span>
       </div>
-      <p text-sm leading-relaxed>Memoh 背后的<br/>Agent Infra。</p>
     </div>
     <div v-click="2" k-card px-6 py-5 col-span-2 flex items-center gap-8>
       <span k-kicker>组织</span>
@@ -106,14 +104,13 @@ clicks: 3
 
 <div text-center>
   <h1 k-title>每个 Agent 都需要一台电脑</h1>
-  <p mt-2 text-base text-muted>这一年，越来越多的产品在做同一件事。</p>
 </div>
 
 <div mt-6 k-card grid grid-cols-3 overflow-hidden>
   <div v-for="(c, i) in [
-      { logo: '/logos/manus.svg', name: 'Manus', desc: '给 Agent 一台常驻的云电脑。', facts: [['上线', '2026.04'], ['形态', 'Cloud Computer'], ['运行', '24 小时常驻']] },
-      { logo: '/logos/grok.svg', name: 'Grok Bot', desc: '你合上电脑，它还在干活。', facts: [['上线', '2026.08'], ['形态', 'Always-on teammate'], ['价格', '随订阅 $30–200/月']] },
-      { icon: true, name: 'VPS + Claude Code', desc: '买一台 VPS，让 Agent 在上面写代码。', facts: [['上线', '一直都在'], ['形态', '自己租的 VPS'], ['运行', '24 小时常驻']] },
+      { logo: '/logos/manus.svg', name: 'Manus', facts: [['上线', '2026.04'], ['形态', 'Cloud Computer'], ['运行', '24 小时常驻']] },
+      { logo: '/logos/grok.svg', name: 'Grok Bot', facts: [['上线', '2026.08'], ['形态', 'Always-on teammate'], ['价格', '随订阅 $30–200/月']] },
+      { icon: true, name: 'VPS + Claude Code', facts: [['上线', '一直都在'], ['形态', '自己租的 VPS'], ['运行', '24 小时常驻']] },
     ]"
     :key="c.name"
     v-click="i + 1"
@@ -125,7 +122,6 @@ clicks: 3
       <simple-icons-claude v-else class="text-4xl text-[#d97757]" />
     </div>
     <div mt-4 text-base font-semibold>{{ c.name }}</div>
-    <div mt-1 text-sm text-muted leading-normal>{{ c.desc }}</div>
     <div class="border-t border-white/[0.07]" mt-3 pt-3 flex flex-col gap-1.5>
       <div v-for="f in c.facts" :key="f[0]" class="grid grid-cols-[52px_1fr]" text-xs>
         <span text-subtle>{{ f[0] }}</span>
@@ -161,7 +157,6 @@ clicks: 3
 
 <div text-center>
   <h1 k-title>Memoh 的定价</h1>
-  <div mt-2 text-base text-muted>每个套餐给的是一池算力，按需切给你的每一个 Bot。</div>
 </div>
 
 <div mt-8 grid grid-cols-3 gap-3>
@@ -210,10 +205,8 @@ clicks: 1
 <div k-card grid class="grid-cols-[0.8fr_1.6fr]" gap-8 px-9 py-9 h-full>
   <div flex flex-col>
     <div text-base font-semibold>同样 4 台 2C4G，别家多少钱？</div>
-    <div mt-1 text-sm text-muted leading-relaxed>每月费用，统一口径：<br/>2 vCPU / 4 GiB，10 GiB 持久盘。</div>
     <div mt-10 text-6xl font-bold tracking-tight>$5</div>
-    <div mt-3 text-sm text-muted>Memoh Go，<span text-primary>不到最便宜常驻方案的十分之一</span>。</div>
-    <div mt-auto text-xs text-subtle leading-relaxed>Memoh 的 8 核 16G 是可超分的配额池，不是独占。<br/>E2B 按需 = 每天用 2 小时、其余时间暂停。<br/>不含账户级订阅费。价格来自各家公开价格页，2026-11。</div>
+    <div v-click="1" mt-auto text-xl font-semibold leading-snug>$5 买 8 核 16G，<br/>我们凭什么？</div>
   </div>
   <div flex items-center>
     <BarChart :row-height="52" label="4 台 2C4G 的月成本" :rows="[
@@ -226,31 +219,27 @@ clicks: 1
   </div>
 </div>
 
-<div v-click="1" absolute left-0 right-0 class="bottom-[62px]" text-center text-xl font-semibold>
-  $5 买 8 核 16G，我们凭什么？
-</div>
-
 <!--
 同样是 4 台 2C4G，对比其他的 Sandbox 或者 VPS 服务商（当然，我们给的是一池可超分的配额，不是 4 台独占的机器，这正是后面要讲的）：E2B 每天只用 2 小时也要 40 美元，AWS 大约 140，E2B 常驻要 480。
 [click] 那我们为什么敢给到用户 5 美元的定价呢？
+注：统一口径 2 vCPU / 4 GiB，10 GiB 持久盘，每月费用；E2B 按需 = 每天用 2 小时、其余时间暂停；不含账户级订阅费；价格来自各家公开价格页，2026-11。
 -->
 
 ---
 glow: c
 section: 02 · Memoh
-clicks: 4
+clicks: 3
 ---
 
 <div text-center>
   <h1 k-title>Memoh 公测的这段时间</h1>
-  <div mt-2 text-base text-muted>上线两个多月，一些数字</div>
 </div>
 
 <div mt-10 grid grid-cols-3 gap-3>
   <div v-for="(s, i) in [
-      { v: '数千', u: '台', d: '用户创建的云电脑', n: '每个 Bot 一台自己的电脑' },
-      { v: '数千', u: '个', d: '在用的团队', n: '个人开发者为主' },
-      { v: '近 3', u: '倍', d: '10 月新增 / 9 月新增', n: '还在涨' },
+      { v: '数千', u: '台', d: '用户创建的云电脑' },
+      { v: '数千', u: '个', d: '在用的团队' },
+      { v: '近 3', u: '倍', d: '10 月新增 / 9 月新增' },
     ]" :key="s.d" v-click="i + 1" k-card px-6 py-6 flex flex-col
   >
     <div flex items-baseline gap-1>
@@ -258,12 +247,7 @@ clicks: 4
       <span text-sm text-muted>{{ s.u }}</span>
     </div>
     <div mt-3 text-sm>{{ s.d }}</div>
-    <div mt-1 text-xs text-subtle>{{ s.n }}</div>
   </div>
-</div>
-
-<div v-click="4" mt-8 text-center text-lg>
-  跑了一段时间，我们在监控里看到一件<span text-primary font-semibold>有意思</span>的事。
 </div>
 
 <!--
@@ -271,7 +255,7 @@ Memoh 九月开始公测，到现在两个多月，
 [click] 用户已经创建了数千台云电脑。
 [click] 在用的团队也有数千个。
 [click] 我们 10 月的新增大概是 9 月的三倍。
-[click] 于是我们通过监控发现了一些有意思的事情。
+后来我们看监控，发现了一件事。
 -->
 
 ---
@@ -282,13 +266,11 @@ clicks: 3
 
 <div text-center>
   <h1 k-title>Agent 电脑的真实占用，和 VPS 很不一样</h1>
-  <div mt-2 text-base text-muted>运行中的云电脑，实际用掉的资源占分配量的比例</div>
 </div>
 
 <div mt-5 grid class="grid-cols-[1.35fr_1fr]" gap-3>
   <div k-card p-3 flex flex-col>
     <img src="/story/cpu-busy.png" alt="线上计算机器的 CPU 忙碌率，一天内都在 5% 以下" w-full rounded-2xl />
-    <div mt-2 px-2 text-xs text-subtle>线上计算机器的 CPU 忙碌率（vCPU 加权），某一天 10:30–16:30</div>
   </div>
   <div flex flex-col gap-3>
     <div k-card px-6 py-4 flex-1>
@@ -309,17 +291,17 @@ clicks: 3
 </div>
 
 <div mt-5 grid grid-cols-3 gap-3>
-  <div v-click="1" text-center><div text-xl font-bold>VPS 上跑的是服务</div><div mt-1 text-xs text-muted>7×24 在线，负载相对平稳</div></div>
-  <div v-click="2" text-center><div text-xl font-bold text-primary>Agent 电脑大部分时间在等</div><div mt-1 text-xs text-muted>等模型返回，等用户回消息</div></div>
-  <div v-click="3" text-center><div text-xl font-bold>忙起来又很突然</div><div mt-1 text-xs text-muted>编译、装依赖、跑浏览器，然后又安静下来</div></div>
+  <div v-click="1" text-center><div text-xl font-bold>VPS 上跑的是服务</div></div>
+  <div v-click="2" text-center><div text-xl font-bold text-primary>Agent 电脑大部分时间在等</div></div>
+  <div v-click="3" text-center><div text-xl font-bold>忙起来又很突然</div></div>
 </div>
 
 <!--
 这是我们在监控里看到的。左边这张是线上计算机器一整个白天的 CPU 忙碌率，所有机器都贴在 5% 以下。换到每台云电脑上看，CPU 利用率的中位数不到 1%，内存实际用到的大概是分配量的两成。
 [click] 这和传统 VPS 很不一样。VPS 上一般跑的是 7×24 在线的服务，负载相对平稳。
 [click] Agent 电脑大部分时间在等：等模型返回，等用户回消息。
-[click] 忙起来又很突然：编译、装依赖、开浏览器，跑完又安静下来。这个负载形态，决定了我们后面所有的设计。
-注：CPU 为运行中 VM 的 guest CPU 利用率中位数；内存为 guest 内已用内存 / 分配内存，取自 2026-11 的采样。
+[click] 忙起来又很突然：编译、装依赖、开浏览器，跑完又安静下来。后面讲的设计，基本都是冲着这个来的。
+注：左图是线上计算机器的 CPU 忙碌率（vCPU 加权），某一天 10:30–16:30。CPU 为运行中 VM 的 guest CPU 利用率中位数；内存为 guest 内已用内存 / 分配内存，取自 2026-11 的采样。
 -->
 
 ---
@@ -370,9 +352,8 @@ section: 04 · 两派
       <span inline-block w-3 h-3 rounded-sm style="background:#f6efe5" />
       <span text-xl font-bold>VPS 派</span>
     </div>
-    <div mt-2 text-sm text-muted>一台 24 小时开着的服务器。</div>
     <div class="border-t border-white/[0.07]" mt-5 pt-4 flex flex-col gap-2 text-sm>
-      <div class="grid grid-cols-[64px_1fr]"><span text-subtle>完整度</span><span>像一台真电脑：持久、root、常驻进程</span></div>
+      <div class="grid grid-cols-[64px_1fr]"><span text-subtle>完整度</span><span>持久、root、常驻进程</span></div>
       <div class="grid grid-cols-[64px_1fr]"><span text-subtle>计费</span><span>按分配量，<span text-white font-semibold>闲着也付全价</span></span></div>
       <div class="grid grid-cols-[64px_1fr]"><span text-subtle>代表</span><span>Hetzner、DigitalOcean、Orgo、Manus</span></div>
     </div>
@@ -382,10 +363,9 @@ section: 04 · 两派
       <span inline-block w-3 h-3 rounded-full bg-primary />
       <span text-xl font-bold>Sandbox 派</span>
     </div>
-    <div mt-2 text-sm text-muted>文件持久，电脑不必一直开着。</div>
     <div class="border-t border-white/[0.07]" mt-5 pt-4 flex flex-col gap-2 text-sm>
       <div class="grid grid-cols-[64px_1fr]"><span text-subtle>完整度</span><span>会话有上限，休眠可能丢状态</span></div>
-      <div class="grid grid-cols-[64px_1fr]"><span text-subtle>计费</span><span>按运行时间，<span text-white font-semibold>用多少付多少</span></span></div>
+      <div class="grid grid-cols-[64px_1fr]"><span text-subtle>计费</span><span><span text-white font-semibold>按运行时间付费</span></span></div>
       <div class="grid grid-cols-[64px_1fr]"><span text-subtle>代表</span><span>E2B、Vercel、Cloudflare、Fly Sprites</span></div>
     </div>
   </div>
@@ -407,18 +387,17 @@ clicks: 4
   <div>
     <div k-kicker>VPS 派</div>
     <h1 k-title mt-3>一直开着，<br/>闲着也付全价</h1>
-    <div mt-5 text-sm text-muted leading-relaxed>2C4G 一台，一个月二三十美元。<br/>而且 2026 年，它在涨价。</div>
-    <div v-click="4" mt-6 flex flex-col gap-2 text-sm>
+    <div v-click="4" mt-8 flex flex-col gap-2 text-sm>
       <div flex gap-2><span text-primary>↑</span><span>Hetzner 今年涨了两次价</span></div>
       <div flex gap-2><span text-primary>↑</span><span>DDR5 采购价一年涨了约 6 倍（OVH）</span></div>
     </div>
   </div>
   <div k-card overflow-hidden>
     <div v-for="(r, i) in [
-        { logo: '/logos/landscape/si-hetzner.svg', name: 'Hetzner / DigitalOcean', note: '经典 VPS · 2C4G', price: '$22–24/月' },
-        { logo: '/logos/landscape/fav-orgo.png', name: 'Orgo', note: '给 Agent 的常驻云电脑 · 2C8G', price: '$29/月' },
-        { logo: '/logos/manus.svg', name: 'Manus Cloud Computer', note: '常驻云电脑，在订阅之外单独付费', price: '$30–50/月' },
-        { logo: '/logos/landscape/si-alibabacloud.svg', name: '阿里云轻量', note: '新客活动价，限购，以官网为准', price: '约 ¥199/年起' },
+        { logo: '/logos/landscape/si-hetzner.svg', name: 'Hetzner / DigitalOcean', note: '2C4G', price: '$22–24/月' },
+        { logo: '/logos/landscape/fav-orgo.png', name: 'Orgo', note: '2C8G', price: '$29/月' },
+        { logo: '/logos/manus.svg', name: 'Manus Cloud Computer', note: '订阅外单独付费', price: '$30–50/月' },
+        { logo: '/logos/landscape/si-alibabacloud.svg', name: '阿里云轻量', note: '新客价', price: '约 ¥199/年起' },
       ]" :key="r.name" v-click="i < 3 ? i + 1 : 3"
       flex items-center gap-4 px-6 py-4
       :class="i > 0 ? 'border-t border-white/[0.06]' : ''"
@@ -438,7 +417,7 @@ clicks: 4
 <!--
 [click] DigitalOcean 这样的传统 VPS，2 核 4G 一个月二十几美元。
 [click] Orgo 这类给 Agent 做的常驻云电脑，29 美元一台，配置是 2 核 8G。
-[click] Manus 的 Cloud Computer 要在订阅之外单独买，2 核 4G 一个月 30 美元，8G 的 50 美元，停止付费电脑里的数据会被删掉。国内的阿里云轻量看起来很便宜，但那是新用户促销价。
+[click] Manus 的 Cloud Computer 要在订阅之外单独买，2 核 4G 一个月 30 美元，8G 的 50 美元，停止付费电脑里的数据会被删掉。国内的阿里云轻量看起来很便宜，但那是新用户促销价，限购，具体以官网为准。
 [click] 而且 VPS 在涨价：Hetzner 今年 4 月和 6 月涨了两次；OVH 的创始人说，DDR5 内存的采购价比一年前涨了 6 倍。
 -->
 
@@ -455,19 +434,19 @@ clicks: 3
       <span text-xl font-bold>E2B</span>
       <span ml-auto k-kicker>经典</span>
     </div>
-    <div mt-3 text-sm text-muted leading-relaxed>Firecracker microVM，按分配量计费，<br/>2C4G 运行时 $0.166 / 小时。</div>
+    <div mt-3 text-sm text-muted leading-relaxed font-mono>Firecracker · $0.166/h</div>
     <div mt-auto grid grid-cols-2 gap-3>
-      <div><div text-3xl font-bold>≈ $10</div><div text-xs text-muted mt-1>每天用 2 小时，其余暂停</div></div>
-      <div><div text-3xl font-bold text-primary>≈ $121</div><div text-xs text-muted mt-1>一直开着</div></div>
+      <div><div text-3xl font-bold>≈ $10</div><div text-xs text-muted mt-1>按需</div></div>
+      <div><div text-3xl font-bold text-primary>≈ $121</div><div text-xs text-muted mt-1>常驻</div></div>
     </div>
-    <div mt-4 text-xs text-subtle>单次会话最长 24 小时，需 Pro 订阅（$150/月）。</div>
+    <div mt-4 text-xs text-subtle>会话 ≤ 24h · 需 Pro $150/月</div>
   </div>
   <div k-card overflow-hidden flex flex-col>
     <div px-6 pt-5 k-kicker>新一代</div>
     <div v-for="(r, i) in [
-        { logo: '/logos/landscape/si-vercel.svg', name: 'Vercel / Cloudflare', note: '只按活跃 CPU 计费，内存仍按分配量。Vercel 定价示例直接假设 CPU 利用率只有 10%。' },
-        { logo: '/logos/landscape/fav-sprites.png', name: 'Fly Sprites', note: '持久磁盘，空闲约 30 秒自动休眠；10 月起新建的 Sprite 改用块设备，替换了 JuiceFS。' },
-        { logo: '/logos/landscape/fav-aws.png', name: 'AWS AgentCore', note: '单会话最长 8 小时；8 月又补上了 Instances，最长可配到 14 天。' },
+        { logo: '/logos/landscape/si-vercel.svg', name: 'Vercel / Cloudflare', note: '按活跃 CPU 计费' },
+        { logo: '/logos/landscape/fav-sprites.png', name: 'Fly Sprites', note: '持久磁盘 · 空闲 30s 休眠' },
+        { logo: '/logos/landscape/fav-aws.png', name: 'AWS AgentCore', note: '会话 ≤ 8h · Instances ≤ 14 天' },
       ]" :key="r.name" v-click="i + 1"
       flex items-start gap-4 px-6 py-4
       :class="i > 0 ? 'border-t border-white/[0.06]' : ''"
@@ -484,10 +463,10 @@ clicks: 3
 </div>
 
 <!--
-我们再看 Sandbox，经典代表是 E2B。按分配量计费，每天只用 2 小时、其余时间暂停，一个月 10 美元左右；一直开着就是 121 美元，而且单次会话超过 1 小时还得买 150 美元一个月的 Pro。
-[click] 除此之外，Vercel 和 Cloudflare 改成只按活跃 CPU 计费。Vercel 在定价示例里直接假设 CPU 利用率只有 10%，理由是 Agent 大部分时间在等 LLM。
-[click] Fly Sprites 给了持久磁盘，空闲 30 秒就自动休眠。
-[click] AWS AgentCore 单会话最长 8 小时，8 月又补上了 Instances，生命周期最长可以配到 14 天。两派其实在互相靠拢。
+我们再看 Sandbox，经典代表是 E2B，用的是 Firecracker microVM，2 核 4G 跑一小时 0.166 美元，按分配量计费，每天只用 2 小时、其余时间暂停，一个月 10 美元左右；一直开着就是 121 美元，而且单次会话超过 1 小时还得买 150 美元一个月的 Pro。
+[click] 除此之外，Vercel 和 Cloudflare 改成只按活跃 CPU 计费，内存还是按分配量。Vercel 在定价示例里直接假设 CPU 利用率只有 10%，理由是 Agent 大部分时间在等 LLM。
+[click] Fly Sprites 给了持久磁盘，空闲 30 秒就自动休眠。10 月起新建的 Sprite 改用了块设备，替换掉原来的 JuiceFS。
+[click] AWS AgentCore 单会话最长 8 小时，8 月又补上了 Instances，生命周期最长可以配到 14 天。Sandbox 也开始做常驻了。
 -->
 
 ---
@@ -506,33 +485,29 @@ clicks: 2
       <span font-mono text-xs text-primary>X</span>
       <span text-xl font-bold>成本</span>
     </div>
-    <div mt-2 text-sm text-muted>一台 2C4G 云电脑，一个月要付多少钱。</div>
     <div class="border-t border-white/[0.07]" mt-5 pt-4 flex flex-col gap-3 text-sm>
       <div flex gap-3><span font-mono text-primary>A</span><span>按资源使用<span text-white>动态计费</span></span></div>
       <div flex gap-3><span font-mono text-primary>B</span><span>按固定<span text-white>运行时间</span>收费</span></div>
     </div>
-    <div mt-4 text-xs text-subtle leading-relaxed>统一口径：2 vCPU / 4 GiB，10 GiB 持久盘，每天活跃 2 小时；按实际 CPU 计费的，按 10% 利用率估算；不含账户级订阅费。</div>
   </div>
   <div v-click="2" k-card px-8 py-7 class="k-tint">
     <div flex items-baseline gap-3>
       <span font-mono text-xs text-primary>Y</span>
       <span text-xl font-bold>电脑完整度</span>
     </div>
-    <div mt-2 text-sm text-muted>它有多像一台真电脑。</div>
     <div class="border-t border-white/[0.07]" mt-5 pt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm>
       <div flex gap-2><span font-mono text-primary>01</span><span>文件是否持久化</span></div>
       <div flex gap-2><span font-mono text-primary>02</span><span>网络是否完整</span></div>
       <div flex gap-2><span font-mono text-primary>03</span><span>有没有完整的 root 权限</span></div>
       <div flex gap-2><span font-mono text-primary>04</span><span>能不能常驻</span></div>
     </div>
-    <div mt-4 text-xs text-subtle leading-relaxed>实现方案：完整虚拟机、Firecracker 这类 microVM、纯容器，都有。</div>
   </div>
 </div>
 
 <!--
 那由此我们可以总结出两个比较的方式：
 [click] 一个方式是成本，比如他是按资源使用动态计费，还是按固定运行时间收费
-[click] 一个是电脑完整度，也就是它有多像一台真电脑。
+[click] 一个是电脑完整度，也就是它能不能当一台正常的电脑用。
 
 目前用完整虚拟机，用firecracker这类microVM方案和纯container方案都有
 
@@ -541,6 +516,8 @@ clicks: 2
 2. 网络是否完整
 3. 有没有完整的 root 权限
 4. 能不能常驻。
+
+注：成本统一口径 2 vCPU / 4 GiB，10 GiB 持久盘，每天活跃 2 小时；按实际 CPU 计费的按 10% 利用率估算；不含账户级订阅费。
 -->
 
 ---
@@ -563,9 +540,9 @@ clicks: 2
 </div>
 
 <!--
-把它们放到一张图上：横轴是一台 2 核 4G 云电脑的月成本，纵轴是它有多像一台真电脑。
+把它们放到一张图上：横轴是一台 2 核 4G 云电脑的月成本，纵轴是它能不能当一台正常的电脑用。
 先看经典的：E2B 和传统 VPS。
-[click] 再放上新一代的 sandbox，两派在互相靠拢。
+[click] 再放上新一代的 sandbox，它们越来越像 VPS 了。
 [click] 现在把口径换成 24 小时常驻：Sandbox 派整体往右跳，VPS 派原地不动。Sandbox 便宜的前提是，大部分时间不开机。
 注：阿里云是新客促销价，EC2 的按需口径假设用户自己写脚本启停，图上用虚线框标出。按实际 CPU 计费的几家（Vercel、Cloudflare、Fly Sprites、AgentCore）按 10% 利用率估算；不含 E2B Pro、Runloop Pro 这类账户级订阅费。
 -->
@@ -610,27 +587,26 @@ clicks: 2
         <span>{{ r[0] }}</span><span font-mono>{{ r[1] }}</span><span font-mono class="text-[#e6e6e5]">{{ r[2] }}</span>
       </div>
     </div>
-    <div mt-3 text-xs text-muted leading-relaxed>为了这几个 9：热迁移、块存储多副本、多可用区、冗余电力。成本都摊进单价。</div>
   </div>
   <div v-click="1" k-card px-7 py-6 class="k-tint">
-    <div text-base font-semibold>Agent 电脑：用户来的时候在，就够了</div>
+    <div text-base font-semibold>Agent 电脑不需要 24×7 在线</div>
     <div mt-4 flex flex-col gap-3 text-sm>
-      <div flex gap-3><span font-mono text-primary>01</span><span>不提供 24×7 服务，按当前负载动态调配，真正要用时再拉起</span></div>
-      <div flex gap-3><span font-mono text-primary>02</span><span>单台挂了，重新拉起就行，访问即唤醒</span></div>
-      <div flex gap-3><span font-mono text-primary>03</span><span>真正不能丢的，是用户的文件、代码和登录态</span></div>
+      <div flex gap-3><span font-mono text-primary>01</span><span>按负载调度，用时再拉起</span></div>
+      <div flex gap-3><span font-mono text-primary>02</span><span>挂了就重启，访问即唤醒</span></div>
+      <div flex gap-3><span font-mono text-primary>03</span><span>只保证文件、代码和登录态不丢</span></div>
     </div>
   </div>
 </div>
 
 <div v-click="2" mt-6 text-center text-2xl font-bold>
-  我们不追跨可用区的 <span text-primary>99.99%</span>，换来的是<span text-primary>约 1/4</span> 的成本。
+  我们不追跨可用区的 <span text-primary>99.99%</span>，换来的是<span text-primary>不到 AWS 1/30</span> 的成本。
 </div>
 
 <!--
 先讲一个前提：Agent 电脑的负载和传统云不一样。
 传统云为 24 小时在线的服务设计，所以对可用性要求很高。比如 AWS EC2 单台的 SLA 是 99.5%，跨可用区部署才能到 99.99%。为了这几个 9，云厂商要做热迁移、多副本、多可用区，这些成本都摊进了实际上给用户的定价。
-[click] 但是我在这里提出一个反问：Agent 电脑真的需要这么高的可用性吗？它不需要部署一个 24×7 的服务，按当前负载动态调配，单台挂了，在保证数据持久化的情况下重新拉起来就行
-[click] 所以我们的取舍是：不去追跨可用区的 99.99%，换来的是同规格云主机大约四分之一的成本（后面会看到，一台 2C4G 大约 9 美元，AWS 要 35 美元）。
+[click] 那 Agent 电脑真需要这么高的可用性吗？它不需要部署一个 24×7 的服务，按当前负载动态调配，单台挂了，在保证数据持久化的情况下重新拉起来就行
+[click] 所以我们的取舍是：不去追跨可用区的 99.99%，换来的成本不到 AWS 的三十分之一（后面会看到，一台 2C4G 在 10 倍超售下成本大约 0.9 美元，AWS 要 35 美元）。
 -->
 
 ---
@@ -645,8 +621,8 @@ clicks: 3
 <div mt-7 grid grid-cols-3 gap-3>
   <div k-card px-6 py-6>
     <div text-sm font-semibold>为什么利用率能更高</div>
-    <div mt-3 text-sm text-muted leading-relaxed>Agent 大部分时间在等：等模型，等人。暂停的电脑只占磁盘，不占 CPU 和内存。</div>
-    <div mt-4 font-mono text-xs class="text-[#e6e6e5]">CPU 利用率中位数 &lt; 1%</div>
+    <div mt-4 text-4xl font-bold tracking-tight>&lt; 1%</div>
+    <div mt-1 text-xs text-muted>CPU 利用率中位数</div>
   </div>
   <div v-click="1" k-card px-6 py-6>
     <div text-sm font-semibold>业界早就这么做</div>
@@ -656,24 +632,24 @@ clicks: 3
   <div v-click="2" k-card px-6 py-6 class="k-tint">
     <div text-sm font-semibold>我们怎么做</div>
     <div mt-3 flex flex-col gap-2 text-sm text-muted>
-      <span>资源分配倍数由控制面统一管理，CPU、内存分开设，热调整</span>
-      <span>单台 64 线程宿主，CPU 按 8 倍分配（<span text-white font-semibold>512 vCPU</span>），CPU steal 为 0</span>
+      <span>CPU / 内存超售比分开设，可热调整</span>
+      <span>64 线程宿主，CPU 8× 超售（<span text-white font-semibold>512 vCPU</span>），steal 为 0</span>
     </div>
   </div>
 </div>
 
 <div v-click="3" mt-5 k-card px-7 py-5 flex items-center gap-6>
   <span k-kicker shrink-0>安全阀</span>
-  <span text-sm>内存吃紧时，宁可杀掉一台 VM 让它重启，也不开 swap 拖慢整台宿主</span>
+  <span text-sm>OOM 时杀 VM，不开 swap</span>
   <span text-subtle>·</span>
-  <span text-sm>宿主可用内存低于 10%，拒绝在这台机器上新建</span>
+  <span text-sm>宿主内存 &lt; 10% 停止调度</span>
 </div>
 
 <!--
 第二个观点是，Agent sandbox 能做到比传统 VPS 高得多的利用率。大部分时间里 Agent 都在等模型输出、等用户回消息，CPU 和内存基本跑不满。暂停的电脑只占磁盘，不占 CPU 和内存。
-[click] 这件事业界早就在做了。AWS 在 Firecracker 的论文里写过：测试过 20 倍以上的超售，生产环境跑到过 10 倍。
+[click] AWS 自己就是这么干的。他们在 Firecracker 的论文里写过：测试过 20 倍以上的超售，生产环境跑到过 10 倍。
 [click] 我们的资源分配倍数由控制面统一管理，CPU 和内存分开设，可以热调整。一台 64 线程的宿主，CPU 按 8 倍分配，CPU steal 依然是 0。
-[click] 当然也要有安全阀：内存吃紧时，宁可杀掉一台 VM 让它重启，也不开 swap 拖慢整台宿主；宿主可用内存低于 10%，就不再往这台机器上新建。
+[click] 超售也有底线：内存不够就杀掉一台 VM 让它重启，不开 swap，免得拖慢整台宿主；宿主可用内存低于 10%，就不再往这台机器上新建。
 -->
 
 ---
@@ -683,29 +659,27 @@ clicks: 1
 ---
 
 <div k-kicker>观点 3</div>
-<h1 k-title mt-2>自建裸金属，摆脱云厂商</h1>
+<h1 k-title mt-2>我们不上云</h1>
 
 <div mt-7 grid grid-cols-2 gap-3>
   <div k-card px-7 py-6>
-    <div text-sm font-semibold>核心路径，零托管依赖</div>
+    <div text-sm font-semibold>不依赖任何云服务</div>
     <div mt-4 grid grid-cols-2 gap-2>
       <div v-for="d in [['数据库', '自管 PostgreSQL'], ['对象存储', 'S3 兼容 · Silo'], ['证书', '自签 PKI'], ['监控', 'VictoriaMetrics']]" :key="d[0]" class="iso-stage" rounded-xl px-4 py-3>
         <div text-xs text-subtle>{{ d[0] }}</div>
         <div mt-1 font-mono text-xs class="text-[#e6e6e5]">{{ d[1] }}</div>
       </div>
     </div>
-    <div mt-4 text-xs text-muted leading-relaxed>网络：每台 VM 一个 IPv6 /128，TAP + 独立 netns 直接路由，不用 overlay。<br/>不配任何公有云凭证，主流程也必须能跑通。</div>
   </div>
   <div v-click="1" k-card px-7 py-6 flex flex-col>
     <div text-sm font-semibold>一台 2C4G 的月成本</div>
     <div mt-2 flex-1 flex items-center>
       <BarChart :row-height="44" label="一台 2C4G 的月成本" :rows="[
-        { name: '裸金属 · 按内存装满', value: 9, label: '≈ $9', highlight: true },
+        { name: 'Kibotos · 10× 超售', value: 0.9, label: '$0.9', highlight: true },
         { name: 'AWS t3.medium', value: 35, label: '$35' },
         { name: 'E2B · 常驻', value: 121, label: '$121' },
       ]" />
     </div>
-    <div text-xs text-subtle>裸金属按 Hetzner AX102 公开报价（16 核 / 128 GB，€259/月，另付 €129 安装费）估算：内存 1:1 装满 32 台，CPU 实际 2:1。AWS 含 10 GB 磁盘与公网 IPv4。</div>
   </div>
 </div>
 
@@ -715,6 +689,10 @@ clicks: 1
 至今为止 Kibotos 的所有服务都是跑在我们的 bare metal 上的，所有的内存，CPU和存储都是我们自己买的
 我举个比较经典的例子 E2B：它的托管服务是构建在 Google Cloud 上的，公有云本身已经不便宜了，E2B 的报价里包含了云厂商的成本和它自己的利润
 而自己部署裸金属，我们付的是硬件、机柜、电力和带宽，但不用再为云厂商的利润和高可用溢价买单。
+[click] 在 10 倍超售下，我们一台 2C4G 一个月的成本大约 0.9 美元。前面说 Memoh Go 折算下来每台 1.25 美元，这就是 5 美元敢卖的原因。
+10 倍能跑得住，是因为大部分电脑在休眠：运行中的电脑实际用掉分配量两成左右的内存，同一时刻只要不超过四成多的电脑在跑就放得下。
+
+注：网络是每台 VM 一个 IPv6 /128，TAP + 独立 netns 直接路由，不用 overlay；不配任何公有云凭证，主流程也必须能跑通。AWS t3.medium 含 10 GB 磁盘与公网 IPv4。观点 2 里的 8 倍是单台宿主当前的 CPU 超售配置。
 -->
 
 ---
@@ -731,25 +709,12 @@ section: 06 · 自建集群
 ---
 glow: l
 section: 06 · 自建集群
-clicks: 3
 ---
 
 <div grid class="grid-cols-[0.9fr_1.1fr]" gap-8 h-full items-center>
   <div>
     <div k-kicker>第一站</div>
     <h1 k-title mt-3>先在上海，<br/>把机器跑起来</h1>
-    <div mt-6 flex flex-col gap-3 text-sm>
-      <div v-click="1" flex gap-3><span font-mono text-primary>01</span><span>Memoh 刚上线，来不及去海外建机房</span></div>
-      <div v-click="2" flex gap-3><span font-mono text-primary>02</span><span>先在上海部署了 <span text-white font-semibold>6 台</span>机器，加一组存储池</span></div>
-      <div v-click="3" flex gap-3><span font-mono text-primary>03</span><span>海外用户通过<span text-white font-semibold>东京的接入节点</span>访问</span></div>
-    </div>
-    <div v-click="3" mt-7 k-card px-5 py-4 flex items-center gap-3 text-sm>
-      <span font-mono class="text-[#e6e6e5]">上海机房</span>
-      <span flex-1 class="border-t border-dashed border-primary/60" />
-      <span font-mono class="text-[#e6e6e5]">东京接入节点</span>
-      <span flex-1 class="border-t border-dashed border-primary/60" />
-      <span text-muted>海外用户</span>
-    </div>
   </div>
   <div k-card p-3 h-100 overflow-hidden>
     <img src="/story/servers.jpg" alt="上海机房的服务器" w-full h-full object-cover rounded-2xl />
@@ -757,10 +722,9 @@ clicks: 3
 </div>
 
 <!--
-我们的第一站是上海。
-[click] Memoh 刚上线的时候，我们还没太多时间去海外扩展机器，于是我们把初期用户的负载放在了上海。
-[click] 现在上海一共 6 台机器，加一组独立的存储池。
-[click] 海外用户是通过我们在东京的接入节点访问的，所以整体访问速度还不错。
+我们的第一站是上海。Memoh 刚上线的时候，我们还没太多时间去海外扩展机器，于是我们把初期用户的负载放在了上海。
+现在上海一共 6 台机器，加一组独立的存储池。
+海外用户是通过我们在东京的接入节点访问的，所以整体访问速度还不错。
 -->
 
 ---
@@ -774,8 +738,8 @@ clicks: 3
     <div k-kicker>上海 · 集群长什么样</div>
     <h1 k-title mt-3>计算和存储，<br/>分开部署</h1>
     <div mt-6 flex flex-col gap-3 text-sm>
-      <div v-click="1" class="grid grid-cols-[72px_1fr]"><span text-subtle>计算机器</span><span>每台约 64 线程、512 GB 内存，只有一块系统盘，<span text-white>只跑 VM，不存数据</span></span></div>
-      <div v-click="2" class="grid grid-cols-[72px_1fr]"><span text-subtle>存储池</span><span>独立的存储机，每台 4×8 TB 机械盘 + SSD，放所有可写层和 /data 卷</span></div>
+      <div v-click="1" class="grid grid-cols-[72px_1fr]"><span text-subtle>计算机器</span><span>64 线程 · 512 GB · <span text-white>只跑 VM</span></span></div>
+      <div v-click="2" class="grid grid-cols-[72px_1fr]"><span text-subtle>存储池</span><span>4×8 TB HDD + SSD · 可写层与 /data</span></div>
     </div>
   </div>
   <div h-90 flex>
@@ -848,7 +812,6 @@ clicks: 2
 
 <div text-center>
   <h1 k-title>接下来，更多地区</h1>
-  <div mt-2 text-base text-muted>我们在亚太和北美还有一些合作的数据中心。</div>
 </div>
 
 <div mt-2 mx-auto w-150>
@@ -885,64 +848,54 @@ clicks: 3
   <div>
     <div k-kicker>下一步</div>
     <h1 k-title mt-3>今天，Kibotos<br/>只服务 Memoh</h1>
-    <div mt-5 text-base text-muted leading-relaxed>它还没有对外开放。<br/>接下来，我们会把它做成一个独立的服务，<br/>并逐步开源。</div>
   </div>
   <div flex flex-col gap-3>
     <div k-card px-7 py-5 flex items-center gap-5>
       <span font-mono text-xs text-subtle w-14 shrink-0>现在</span>
       <div>
         <div text-base font-semibold>内部基础设施</div>
-        <div mt-1 text-sm text-muted>承载 Memoh 的全部云电脑，在真实负载上打磨</div>
       </div>
     </div>
     <div v-click="1" k-card px-7 py-5 flex items-center gap-5 class="k-tint">
       <span font-mono text-xs text-primary w-14 shrink-0>2026.12</span>
       <div>
         <div text-base font-semibold>Early Access</div>
-        <div mt-1 text-sm text-muted>小范围开放，免费体验，进群申请</div>
+        <div mt-1 text-sm text-muted>免费 · 进群申请</div>
       </div>
     </div>
     <div v-click="2" k-card px-7 py-5 flex items-center gap-5>
       <span font-mono text-xs text-subtle w-14 shrink-0>之后</span>
       <div>
         <div text-base font-semibold>对外服务</div>
-        <div mt-1 text-sm text-muted>给你的 Agent 用，不只是给 Memoh 用</div>
       </div>
     </div>
     <div v-click="3" k-card px-7 py-5 flex items-center gap-5>
       <span font-mono text-xs text-subtle w-14 shrink-0>再往后</span>
       <div>
         <div text-base font-semibold>逐步开源</div>
-        <div mt-1 text-sm text-muted>把这些技术一点点开源出来</div>
       </div>
     </div>
   </div>
 </div>
 
 <!--
-今天 Kibotos 还只服务 Memoh 自己，没有对外开放。它承载着 Memoh 的全部云电脑。
+今天 Kibotos 还只服务 Memoh 自己，没有对外开放。它承载着 Memoh 的全部云电脑。接下来我们会把它做成一个独立的服务，并逐步开源。
 [click] 12 月我们会开放 Early Access，小范围免费体验，感兴趣的可以进群申请。
-[click] 再往后，它会成为一个对外的服务，而不只是服务于 Memoh。
+[click] 再往后，它会成为一个对外的服务，你自己的 Agent 也能用。
 [click] 最后，我们也会把这些技术逐步开源出来，就像 Memoh 一样。
 -->
 
 ---
 glow: r
 section: 07 · 下一步
-clicks: 2
+clicks: 1
 ---
 
 <div k-card grid class="grid-cols-[0.8fr_1.2fr]" gap-8 px-9 py-9 h-full>
   <div flex flex-col>
     <div k-kicker>价格</div>
     <div mt-3 text-2xl font-bold leading-snug>对外价格还在定，<br/>但成本可以压到<span text-primary>很低</span>。</div>
-    <div mt-6 flex flex-col gap-3 text-sm text-muted>
-      <div v-click="1" flex gap-3><span font-mono text-primary>01</span><span>Agent 电脑的真实占用低，同一台机器能服务更多人</span></div>
-      <div v-click="1" flex gap-3><span font-mono text-primary>02</span><span>自己的裸金属，不为云厂商的高可用买单</span></div>
-      <div v-click="1" flex gap-3><span font-mono text-primary>03</span><span>冷启动、内存回收，闲着的电脑几乎不占资源</span></div>
-    </div>
-    <div v-click="2" mt-6 text-sm>Early Access 期间<span text-primary font-semibold>免费</span>体验。</div>
-    <div mt-auto text-xs text-subtle>一台 2C4G 的每月费用；按需 = 每天活跃 2 小时。</div>
+    <div v-click="1" mt-6 text-sm>Early Access 期间<span text-primary font-semibold>免费</span>体验。</div>
   </div>
   <div flex items-center>
     <BarChart :row-height="52" label="一台 2C4G 的月成本" :rows="[
@@ -950,15 +903,15 @@ clicks: 2
       { name: 'AWS t3.medium', value: 35, label: '$35' },
       { name: 'Hetzner · 常驻', value: 22, label: '$22' },
       { name: 'E2B · 按需', value: 10, label: '$10' },
-      { name: 'Kibotos', value: 2, label: '?', highlight: $clicks >= 2 },
+      { name: 'Kibotos · 成本', value: 0.9, label: '$0.9', highlight: true },
     ]" />
   </div>
 </div>
 
 <!--
-大家肯定会问：对外卖多少钱？说实话，价格我们还在定。
-[click] 但可以透露的是，我们会成为目前性价比最高的 agent sandbox 服务商
+大家肯定会问：对外卖多少钱？说实话，价格我们还在定。但可以说的是成本：10 倍超售下，一台 2C4G 一个月大约 0.9 美元。我们的目标是做到最便宜的那一档。
 [click] 具体价格，等正式对外服务的时候再公布。Early Access 期间是免费的，欢迎大家先来用。
+注：右图其他几家是一台 2C4G 的每月费用，E2B 按需 = 每天活跃 2 小时。
 -->
 
 ---
@@ -971,7 +924,7 @@ clicks: 1
   <img src="/brand/kibotos-lockup-dark.svg" alt="Kibotos" w-44 class="reveal" />
   <div mt-10 grid class="reveal [&>*]:[grid-area:1/1]" style="animation-delay: 120ms">
     <div k-title text-5xl leading-snug transition duration-500 :class="$clicks >= 1 ? 'op-0 -translate-y-3' : ''">
-      给你的 Agent 一个应许之地
+      给你的 Agent 一艘方舟
     </div>
     <div k-title text-4xl leading-snug self-center transition duration-500 :class="$clicks >= 1 ? '' : 'op-0 translate-y-3'">
       Early Access at <span text-primary>December, 2026</span>
