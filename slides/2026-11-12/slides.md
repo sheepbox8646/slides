@@ -988,7 +988,7 @@ clicks: 0
   <div grid grid-cols-2 gap-6>
     <div k-card px-9 pt-8 pb-7 flex flex-col items-center class="reveal">
       <div bg-white rounded-2xl p-3>
-        <img src="/qr/founder.svg" alt="Contact Founder 二维码（占位）" w-48 h-48 block />
+        <img src="/qr/founder.svg?v=wechat" alt="Contact Founder 微信二维码" w-48 h-48 block />
       </div>
       <div mt-6 flex items-center gap-2 text-lg font-semibold>
         <simple-icons-wechat class="text-[#07c160]" text-xl />
@@ -997,7 +997,7 @@ clicks: 0
     </div>
     <div k-card px-9 pt-8 pb-7 flex flex-col items-center class="reveal k-tint" style="animation-delay: 120ms">
       <div bg-white rounded-2xl p-3>
-        <img src="/qr/group.svg" alt="加入预热群 二维码：t.me/kibotos_community" w-48 h-48 block />
+        <img src="/qr/group.svg?v=tg" alt="加入预热群 二维码：t.me/kibotos_community" w-48 h-48 block />
       </div>
       <div mt-6 flex items-center gap-2 text-lg font-semibold>
         <simple-icons-telegram class="text-[#26a5e4]" text-xl />
