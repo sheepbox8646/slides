@@ -86,10 +86,9 @@ clicks: 2
 
 <!--
 先简单自我介绍。我是 Acbox，你也可以叫我小箱子。
-[click] 不知道现场的各位有多少是用过或者了解过 Memoh 这个产品的，我是 Memoh 团队的核心成员，也是 Felinic 团队的 Co-founder
-[click] 简单来说，Memoh是一个 Cloud Agent 的平台，我们给每个Agent创建了一个云电脑，你可以托管你自己的Agent或者 Bring your own key
-
+[click] 不知道现场的各位有多少是用过或者了解过 Memoh 这个产品的。简单来说，Memoh 是一个 Cloud Agent 的平台，我们给每个 Agent 创建了一个云电脑，你可以托管你自己的 Agent 或者 Bring your own key。
 今天我们要介绍的是它背后的 Agent Infra：Kibotos，也就是今天的主角。
+[click] 我是 Memoh 团队的核心成员，也是 Felinic 团队的 Co-founder。
 -->
 
 ---
@@ -102,7 +101,7 @@ section: 01 · Agent Computer
 ---
 glow: tr
 section: 01 · Agent Computer
-clicks: 4
+clicks: 3
 ---
 
 <div text-center>
@@ -199,6 +198,7 @@ clicks: 3
 这是 Memoh 的公开定价。
 [click] 最便宜的 Go 套餐，5 美元一个月，我们有8c16g的配额可以用
 [click] 更高级的两个套餐我们也给了更多的配额
+[click] 换算一下，8 核 16G 理论上可以创建四个 2C4G 的云电脑给 Agent，每台每月大约 1.25 美元。
 -->
 
 ---
@@ -213,7 +213,7 @@ clicks: 1
     <div mt-1 text-sm text-muted leading-relaxed>每月费用，统一口径：<br/>2 vCPU / 4 GiB，10 GiB 持久盘。</div>
     <div mt-10 text-6xl font-bold tracking-tight>$5</div>
     <div mt-3 text-sm text-muted>Memoh Go，<span text-primary>不到最便宜常驻方案的十分之一</span>。</div>
-    <div mt-auto text-xs text-subtle leading-relaxed>E2B 按需 = 每天用 2 小时、其余时间暂停。<br/>价格来自各家公开价格页，2026-11。</div>
+    <div mt-auto text-xs text-subtle leading-relaxed>Memoh 的 8 核 16G 是可超分的配额池，不是独占。<br/>E2B 按需 = 每天用 2 小时、其余时间暂停。<br/>价格来自各家公开价格页，2026-11。</div>
   </div>
   <div flex items-center>
     <BarChart :row-height="52" label="4 台 2C4G 的月成本" :rows="[
@@ -231,8 +231,7 @@ clicks: 1
 </div>
 
 <!--
-8c16g 的配置，理论上可以创建四个 2c4g 的云电脑给 agent
-[click] 对比其他的Sandbox或者VPS服务商：E2B 每天只用 2 小时也要 40 美元，AWS 120，E2B 常驻要 480。
+同样是 4 台 2C4G，对比其他的 Sandbox 或者 VPS 服务商（当然，我们给的是一池可超分的配额，不是 4 台独占的机器，这正是后面要讲的）：E2B 每天只用 2 小时也要 40 美元，AWS 120，E2B 常驻要 480。
 [click] 那我们为什么敢给到用户 5 美元的定价呢？
 -->
 
@@ -333,7 +332,6 @@ section: 03 · Kibotos
 ---
 glow: r
 section: 03 · Kibotos
-clicks: 1
 ---
 
 <div grid grid-cols-2 items-center h-full gap-6>
@@ -440,7 +438,7 @@ clicks: 4
 <!--
 [click] DigitalOcean 这样的传统 VPS，2 核 4G 一个月二十几美元。
 [click] Orgo 这类给 Agent 做的常驻云电脑，29 美元。
-[click] Manus 的 Cloud Computer 要在订阅之外单独买，2 核 4G 一个月 30 美元，8G 的 50 美元，停止付费电脑里的数据会被删掉。
+[click] Manus 的 Cloud Computer 要在订阅之外单独买，2 核 4G 一个月 30 美元，8G 的 50 美元，停止付费电脑里的数据会被删掉。国内的阿里云轻量看起来很便宜，但那是新用户促销价。
 [click] 而且 VPS 在涨价：Hetzner 今年涨了两次，DDR5 内存一年涨了大约 6 倍。
 -->
 
@@ -564,9 +562,6 @@ clicks: 2
   <LandscapeChart :step="$clicks" />
 </div>
 
-<div v-click="1" />
-<div v-click="2" />
-
 <!--
 把它们放到一张图上：横轴是一台 2 核 4G 云电脑的月成本，纵轴是它有多像一台真电脑。
 先看经典的：E2B 和传统 VPS。
@@ -578,7 +573,6 @@ clicks: 2
 ---
 glow: c
 section: 04 · 两派
-clicks: 1
 ---
 
 <div h-full flex flex-col justify-center items-center text-center>
@@ -629,14 +623,14 @@ clicks: 2
 </div>
 
 <div v-click="2" mt-6 text-center text-2xl font-bold>
-  我们用 <span text-primary>0.5%</span> 的可用性，换取只有别人 <span text-primary>1/3</span> 的成本优势。
+  我们不追跨可用区的 <span text-primary>99.99%</span>，换来的是<span text-primary>不到 1/5</span> 的成本。
 </div>
 
 <!--
 先讲一个前提：Agent 电脑的负载和传统云不一样。
-传统云为 24 小时在线的服务设计，所以对可用性要求很高。比如 AWS 承诺自己的SLA为99.99%。那么为了这几个 9，云厂商要做热迁移、多副本、多可用区，这些成本都摊进了实际上给用户的定价。
-[click] 但是我在这里提出一个反问：Agent 电脑真的需要这么高的可用性吗？它不需要部署一个 24×7 的服务，按当前负载动态调配，单台挂了，在保证数据持久话的情况下重新拉起来就行
-[click] 所以我们的取舍是：用 0.5% 的可用性，换取只有别人三分之一的成本。
+传统云为 24 小时在线的服务设计，所以对可用性要求很高。比如 AWS EC2 单台的 SLA 是 99.5%，跨可用区部署才能到 99.99%。为了这几个 9，云厂商要做热迁移、多副本、多可用区，这些成本都摊进了实际上给用户的定价。
+[click] 但是我在这里提出一个反问：Agent 电脑真的需要这么高的可用性吗？它不需要部署一个 24×7 的服务，按当前负载动态调配，单台挂了，在保证数据持久化的情况下重新拉起来就行
+[click] 所以我们的取舍是：不去追跨可用区的 99.99%，换来的是不到同规格云主机五分之一的成本（后面会看到，一台 2C4G 大约 6 美元对 AWS 的 30 美元）。
 -->
 
 ---
@@ -663,7 +657,7 @@ clicks: 3
     <div text-sm font-semibold>我们怎么做</div>
     <div mt-3 flex flex-col gap-2 text-sm text-muted>
       <span>资源分配倍数由控制面统一管理，CPU、内存分开设，热调整</span>
-      <span>单台 64 线程宿主，CPU 按 8 倍分配跑 <span text-white font-semibold>512 台 VM</span>，CPU steal 为 0</span>
+      <span>单台 64 线程宿主，CPU 按 8 倍分配（<span text-white font-semibold>512 vCPU</span>），CPU steal 为 0</span>
     </div>
   </div>
 </div>
@@ -676,10 +670,10 @@ clicks: 3
 </div>
 
 <!--
-第二个观点是，Agent sandbox 能做到比传统 VPS 高得多的利用率。
-[click] 大部分的时间里，Agent的工作在等待输出，很多时候CPU和内存的占用率是完全跑不满的，基本都是在运行开发环境
-[click] 我们也不需要像 VPS 一样给每个云电脑独立的公网IP。
-所以很多时候我们能做到10倍的超售率同时保持可用性
+第二个观点是，Agent sandbox 能做到比传统 VPS 高得多的利用率。大部分时间里 Agent 都在等模型输出、等用户回消息，CPU 和内存基本跑不满。暂停的电脑只占磁盘，不占 CPU 和内存。
+[click] 这件事业界早就在做了。AWS 在 Firecracker 的论文里写过：测试过 20 倍以上的超售，生产环境跑到过 10 倍。
+[click] 我们的资源分配倍数由控制面统一管理，CPU 和内存分开设，可以热调整。一台 64 线程的宿主，CPU 按 8 倍分配，CPU steal 依然是 0。
+[click] 当然也要有安全阀：内存吃紧时，宁可杀掉一台 VM 让它重启，也不开 swap 拖慢整台宿主；宿主可用内存低于 10%，就不再往这台机器上新建。
 -->
 
 ---
@@ -706,12 +700,12 @@ clicks: 1
     <div text-sm font-semibold>一台 2C4G 的月成本</div>
     <div mt-2 flex-1 flex items-center>
       <BarChart :row-height="44" label="一台 2C4G 的月成本" :rows="[
-        { name: '裸金属 · CPU 4:1', value: 5.8, label: '≈ $6', highlight: true },
+        { name: '裸金属 · 按内存装满', value: 5.8, label: '≈ $6', highlight: true },
         { name: 'AWS t3.medium', value: 30, label: '$30' },
         { name: 'E2B · 常驻', value: 121, label: '$121' },
       ]" />
     </div>
-    <div text-xs text-subtle>裸金属按 Hetzner AX102 公开报价（16 核 / 128 GB，€159/月）估算。</div>
+    <div text-xs text-subtle>裸金属按 Hetzner AX102 公开报价（16 核 / 128 GB，€159/月）估算：内存 1:1 装满 32 台，CPU 实际 2:1。</div>
   </div>
 </div>
 
@@ -720,7 +714,7 @@ clicks: 1
 第三个观点是：我们应该重新思考上云
 至今为止 Kibotos 的所有服务都是跑在我们的 bare metal 上的，所有的内存，CPU和存储都是我们自己买的
 我举个比较经典的例子 E2B: 他的服务是构建在 AWS 上的，AWS本身已经是一个不太便宜的服务商了，E2B的报价包含了AWS的成本和他自己利润
-而自己部署裸金属的成本几乎只有网络费用和数据中心的租金，这些基本可以等同于0
+而自己部署裸金属，我们付的是硬件、机柜、电力和带宽，但不用再为云厂商的利润和高可用溢价买单。
 -->
 
 ---
@@ -765,9 +759,10 @@ clicks: 3
 </div>
 
 <!--
-Memoh 刚上线的时候，我们还没太多时间去海外扩展机器，于是我们把我们初期用户的负载放在了上海
+我们的第一站是上海。
+[click] Memoh 刚上线的时候，我们还没太多时间去海外扩展机器，于是我们把初期用户的负载放在了上海。
 [click] 现在上海一共 6 台机器，加一组独立的存储池。
-[click] 出口走的是跨境专线，从东京出去。所以有些用户可能发现，Memoh 连到上海很快
+[click] 出口走的是跨境专线，从东京出去，再到全球用户。
 -->
 
 ---
@@ -792,7 +787,7 @@ clicks: 3
 
 <!--
 上海这几台机器的架构是这样的。
-[click] 计算机器每台大约 64 线程、512 GB 内存，只有一块系统盘，只跑 VM 和用户的 rootfs。
+[click] 计算机器每台大约 64 线程、512 GB 内存，只有一块系统盘，本地只缓存只读的基础镜像，只跑 VM，不存用户数据。
 [click] 存储池是独立的机器，放所有电脑的可写层和数据卷。
 -->
 
@@ -827,9 +822,9 @@ clicks: 1
 
 <!--
 在上个月的时候，我们又采购了一批，大概 15 台机器
-[click] 它们的目的地是东京的 Equinix 机房。
-[click] 当然这些资源可以让我稍微再撑一段时间，但是不多
-Equinix 那边也爆单了，我们排了很久的队才排上，目前还没有去机房上机器
+12 台宿主机和上海同规格，另外 3 台是存储池。
+[click] 它们的目的地是东京的 Equinix 机房。当然这些资源可以让我们稍微再撑一段时间，但是不多。
+Equinix 那边也爆单了，我们排了很久的队才排上，目前还没有去机房上机器。
 -->
 
 ---
@@ -875,7 +870,8 @@ clicks: 2
 </div>
 
 <!--
-那么我们会在未来的几个月里逐步拓展我们的服务地区和资源
+那么我们会在未来的几个月里逐步拓展我们的服务地区和资源。现在在跑的只有上海。
+[click] 东京这批机器会在 11 月 20 日上架。
 [click] 我们在新加坡、吉隆坡、新山，还有旧金山，都有很多合作的数据中心，未来会把机器扩到这些地区。
 
 那么有了这些机器，下一步就是把 Kibotos 开放出去了

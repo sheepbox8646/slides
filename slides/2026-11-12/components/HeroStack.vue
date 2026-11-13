@@ -21,7 +21,7 @@ import IsoLabel from './iso/IsoLabel.vue'
 
 const L: Record<string, string> = {
   'hero.dataCenters': '数据中心',
-  'hero.aroundTheWorld': '遍布全球',
+  'hero.aroundTheWorld': '自建裸金属',
   'hero.x86': 'x86服务器',
   'hero.environments': '运行环境',
   'hero.linuxDistros': '任意Linux发行版',
