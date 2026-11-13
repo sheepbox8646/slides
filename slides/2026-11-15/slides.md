@@ -559,7 +559,7 @@ section: 04 · 两派
 </div>
 
 <!--
-所以，我们是如何做到成本那么低的呢
+所以，我们是如何做到成本那么低的呢？其实我们就做了四件事。
 -->
 
 ---
@@ -575,8 +575,8 @@ section: 05 · 我们的做法
 clicks: 2
 ---
 
-<div k-kicker>观点 1</div>
-<h1 k-title mt-2>Agent 电脑的负载，和传统云不一样</h1>
+<div k-kicker>01</div>
+<h1 k-title mt-2>不追传统云的高可用</h1>
 
 <div mt-7 grid grid-cols-2 gap-3>
   <div k-card px-7 py-6>
@@ -603,10 +603,10 @@ clicks: 2
 </div>
 
 <!--
-先讲一个前提：Agent 电脑的负载和传统云不一样。
-传统云为 24 小时在线的服务设计，所以对可用性要求很高。比如 AWS EC2 单台的 SLA 是 99.5%，跨可用区部署才能到 99.99%。为了这几个 9，云厂商要做热迁移、多副本、多可用区，这些成本都摊进了实际上给用户的定价。
-[click] 那 Agent 电脑真需要这么高的可用性吗？它不需要部署一个 24×7 的服务，按当前负载动态调配，单台挂了，在保证数据持久化的情况下重新拉起来就行
-[click] 所以我们的取舍是：不去追跨可用区的 99.99%，换来的成本不到 AWS 的三十分之一（后面会看到，一台 2C4G 在 10 倍超售下成本大约 0.9 美元，AWS 要 35 美元）。
+第一件事：我们不追传统云那样的高可用。
+传统云是为 24 小时在线的服务设计的，所以对可用性要求很高。比如 AWS EC2 单台的 SLA 是 99.5%，跨可用区部署才能到 99.99%。为了这几个 9，云厂商要做热迁移、多副本、多可用区，这些成本最后都摊进了给用户的价格里。
+[click] 但 Agent 电脑不需要跑一个 24×7 的服务。我们按当前负载调度，用的时候再拉起来；单台挂了，只要数据持久化做好，重启就行，用户一访问就唤醒。
+[click] 所以我们没有去追跨可用区的 99.99%，换来的成本不到 AWS 的三十分之一（后面会看到，一台 2C4G 在 10 倍超售下成本大约 0.9 美元，AWS 要 35 美元）。
 -->
 
 ---
@@ -615,8 +615,8 @@ section: 05 · 我们的做法
 clicks: 3
 ---
 
-<div k-kicker>观点 2</div>
-<h1 k-title mt-2>Agent sandbox 能做到比传统 VPS 高得多的利用率</h1>
+<div k-kicker>02</div>
+<h1 k-title mt-2>按真实占用超售</h1>
 
 <div mt-7 grid grid-cols-3 gap-3>
   <div k-card px-6 py-6>
@@ -646,9 +646,9 @@ clicks: 3
 </div>
 
 <!--
-第二个观点是，Agent sandbox 能做到比传统 VPS 高得多的利用率。大部分时间里 Agent 都在等模型输出、等用户回消息，CPU 和内存基本跑不满。暂停的电脑只占磁盘，不占 CPU 和内存。
+第二件事：按真实占用来超售。前面看到，大部分时间里 Agent 都在等模型输出、等用户回消息，运行中的电脑 CPU 利用率中位数不到 1%；暂停的电脑只占磁盘，不占 CPU 和内存。所以我们不按分配量给每台电脑预留资源。
 [click] AWS 自己就是这么干的。他们在 Firecracker 的论文里写过：测试过 20 倍以上的超售，生产环境跑到过 10 倍。
-[click] 我们的资源分配倍数由控制面统一管理，CPU 和内存分开设，可以热调整。一台 64 线程的宿主，CPU 按 8 倍分配，CPU steal 依然是 0。
+[click] 我们的超售比由控制面统一管理，CPU 和内存分开设，可以热调整。一台 64 线程的宿主，CPU 按 8 倍分配，CPU steal 依然是 0。
 [click] 超售也有底线：内存不够就杀掉一台 VM 让它重启，不开 swap，免得拖慢整台宿主；宿主可用内存低于 10%，就不再往这台机器上新建。
 -->
 
@@ -658,8 +658,8 @@ section: 05 · 我们的做法
 clicks: 1
 ---
 
-<div k-kicker>观点 3</div>
-<h1 k-title mt-2>我们不上云</h1>
+<div k-kicker>03</div>
+<h1 k-title mt-2>自建裸金属，不上云</h1>
 
 <div mt-7 grid grid-cols-2 gap-3>
   <div k-card px-7 py-6>
@@ -685,14 +685,41 @@ clicks: 1
 
 
 <!--
-第三个观点是：我们应该重新思考上云
-至今为止 Kibotos 的所有服务都是跑在我们的 bare metal 上的，所有的内存，CPU和存储都是我们自己买的
-我举个比较经典的例子 E2B：它的托管服务是构建在 Google Cloud 上的，公有云本身已经不便宜了，E2B 的报价里包含了云厂商的成本和它自己的利润
+第三件事：我们不上云。
+到目前为止，Kibotos 的所有服务都跑在我们自己的裸金属上，内存、CPU 和存储都是我们自己买的。
+举个例子，E2B：它的托管服务是构建在 Google Cloud 上的，公有云本身已经不便宜了，E2B 的报价里包含了云厂商的成本和它自己的利润
 而自己部署裸金属，我们付的是硬件、机柜、电力和带宽，但不用再为云厂商的利润和高可用溢价买单。
 [click] 在 10 倍超售下，我们一台 2C4G 一个月的成本大约 0.9 美元。前面说 Memoh Go 折算下来每台 1.25 美元，这就是 5 美元敢卖的原因。
 10 倍能跑得住，是因为大部分电脑在休眠：运行中的电脑实际用掉分配量两成左右的内存，同一时刻只要不超过四成多的电脑在跑就放得下。
 
-注：网络是每台 VM 一个 IPv6 /128，TAP + 独立 netns 直接路由，不用 overlay；不配任何公有云凭证，主流程也必须能跑通。AWS t3.medium 含 10 GB 磁盘与公网 IPv4。观点 2 里的 8 倍是单台宿主当前的 CPU 超售配置。
+注：网络是每台 VM 一个 IPv6 /128，TAP + 独立 netns 直接路由，不用 overlay；不配任何公有云凭证，主流程也必须能跑通。AWS t3.medium 含 10 GB 磁盘与公网 IPv4。第 2 点里的 8 倍是单台宿主当前的 CPU 超售配置。
+-->
+
+---
+glow: tl
+section: 05 · 我们的做法
+clicks: 1
+---
+
+<div k-kicker>04</div>
+<h1 k-title mt-2>极致的性能压榨</h1>
+
+<div mt-10 grid class="grid-cols-[1.2fr_0.8fr]" gap-3>
+  <div k-card px-9 py-9 flex flex-col justify-center gap-6 class="k-tint">
+    <img :src="$asset('/brand/kibovm-lockup-dark.svg')" alt="KiboVM" h-12 self-start />
+    <div text-2xl font-bold leading-snug>按 Agent Sandbox 的用法，<br/>把虚拟机重写一遍</div>
+  </div>
+  <div v-click="1" k-card px-9 py-9 flex flex-col justify-center>
+    <div k-kicker>例：Template 共享</div>
+    <div mt-4 text-6xl font-bold tracking-tight text-primary>−30%</div>
+    <div mt-2 text-sm text-muted>宿主内存</div>
+  </div>
+</div>
+
+<!--
+第四件事：我们自己写了一个虚拟机，叫 KiboVM。
+为什么要自己写？现成的虚拟机是给通用场景设计的，什么情况都要照顾到。但 Agent Sandbox 的用法很固定：大部分时间在等，而且所有用户用的都是同一个 template。所以我们按这个用法，把虚拟机里该改的地方重写了一遍，目标就两个：性能压到最高，内存省到最少。
+[click] 举个例子：Memoh 所有用户用的是同一个 template，那一台机器上只需要放一份，不用每台电脑各存一份。我们测过，同一台机器跑 10 台电脑，光这一项就省了三成内存。KiboVM 里这样的优化还有很多。
 -->
 
 ---
