@@ -2,11 +2,12 @@
 import { computed } from 'vue'
 import { useNav } from '@slidev/client'
 
-// Page background and footer for every slide.
+// Page background for every slide.
 // Background: Base Black with the landing's bottom fade, the dot field, and one slow Collab Blue glow
 // whose position follows the slide (frontmatter `glow: tl | tr | bl | br | c | none`).
-// Footer: reverse mark on the left, page number on the right.
-const { currentSlideRoute, currentPage, total } = useNav()
+// The footer lives in slide-bottom.vue so each slide (and each exported PDF page) gets its own number.
+// isPrintMode is true while `slidev export` renders the PDF (it prints with screen media, so @media print never applies).
+const { currentSlideRoute, isPrintMode } = useNav()
 const fm = computed(() => (currentSlideRoute.value?.meta?.slide?.frontmatter ?? {}) as Record<string, any>)
 
 const GLOW: Record<string, [number, number]> = {
@@ -20,22 +21,16 @@ const GLOW: Record<string, [number, number]> = {
 }
 const glowPos = computed(() => GLOW[fm.value.glow ?? 'tr'] ?? GLOW.tr)
 const glowOn = computed(() => fm.value.glow !== 'none')
-const showFooter = computed(() => fm.value.footer !== false)
 </script>
 
 <template>
-  <div class="k-bg" aria-hidden="true">
+  <div class="k-bg" :class="{ 'k-print': isPrintMode }" aria-hidden="true">
     <div
       class="k-glow"
       :style="{ left: `${glowPos[0]}%`, top: `${glowPos[1]}%`, opacity: glowOn ? 1 : 0 }"
     />
     <div class="k-dots" />
   </div>
-
-  <footer v-if="showFooter" class="k-footer">
-    <img src="/brand/kibotos-mark-white.svg" alt="" class="k-footer-mark" />
-    <span class="k-footer-page">{{ String(currentPage).padStart(2, '0') }} / {{ String(total).padStart(2, '0') }}</span>
-  </footer>
 </template>
 
 <style scoped>
@@ -72,26 +67,12 @@ const showFooter = computed(() => fm.value.footer !== false)
   50% { scale: 1.12; }
 }
 
-.k-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 44px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  padding: 0 34px;
-  font-family: "Poppins", "PingFang SC", sans-serif;
-  font-size: 9px;
-  color: #82807d;
-  pointer-events: none;
+/* Exported PDF: PDF viewers turn the blurred glow, the dot mask and the bottom fade into hard-edged bands. */
+.k-print {
+  background: #2e2b26;
 }
-.k-footer-mark {
-  width: 18px;
-  height: 18px;
-}
-.k-footer-page {
-  font-family: "Fira Code", ui-monospace, monospace;
+.k-print .k-glow,
+.k-print .k-dots {
+  display: none;
 }
 </style>

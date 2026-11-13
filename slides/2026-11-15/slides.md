@@ -741,16 +741,14 @@ clicks: 3
     <div mt-6 flex flex-col gap-3 text-sm>
       <div v-click="1" flex gap-3><span font-mono text-primary>01</span><span>Memoh 刚上线，来不及去海外建机房</span></div>
       <div v-click="2" flex gap-3><span font-mono text-primary>02</span><span>先在上海部署了 <span text-white font-semibold>6 台</span>机器，加一组存储池</span></div>
-      <div v-click="3" flex gap-3><span font-mono text-primary>03</span><span>出口走<span text-white font-semibold>跨境专线</span>，从东京出去</span></div>
+      <div v-click="3" flex gap-3><span font-mono text-primary>03</span><span>海外用户通过<span text-white font-semibold>东京的接入节点</span>访问</span></div>
     </div>
     <div v-click="3" mt-7 k-card px-5 py-4 flex items-center gap-3 text-sm>
-      <span font-mono class="text-[#e6e6e5]">上海</span>
+      <span font-mono class="text-[#e6e6e5]">上海机房</span>
       <span flex-1 class="border-t border-dashed border-primary/60" />
-      <span text-xs text-muted>跨境专线</span>
+      <span font-mono class="text-[#e6e6e5]">东京接入节点</span>
       <span flex-1 class="border-t border-dashed border-primary/60" />
-      <span font-mono class="text-[#e6e6e5]">东京出口</span>
-      <span text-subtle>→</span>
-      <span text-muted>全球用户</span>
+      <span text-muted>海外用户</span>
     </div>
   </div>
   <div k-card p-3 h-100 overflow-hidden>
@@ -762,7 +760,7 @@ clicks: 3
 我们的第一站是上海。
 [click] Memoh 刚上线的时候，我们还没太多时间去海外扩展机器，于是我们把初期用户的负载放在了上海。
 [click] 现在上海一共 6 台机器，加一组独立的存储池。
-[click] 出口走的是跨境专线，从东京出去，再到全球用户。
+[click] 海外用户是通过我们在东京的接入节点访问的，所以整体访问速度还不错。
 -->
 
 ---
@@ -880,14 +878,14 @@ clicks: 2
 ---
 glow: tl
 section: 07 · 下一步
-clicks: 2
+clicks: 3
 ---
 
 <div grid class="grid-cols-[0.9fr_1.1fr]" gap-8 h-full items-center>
   <div>
     <div k-kicker>下一步</div>
     <h1 k-title mt-3>今天，Kibotos<br/>只服务 Memoh</h1>
-    <div mt-5 text-base text-muted leading-relaxed>它还没有对外开放。<br/>接下来，我们会把它做成一个独立的服务。</div>
+    <div mt-5 text-base text-muted leading-relaxed>它还没有对外开放。<br/>接下来，我们会把它做成一个独立的服务，<br/>并逐步开源。</div>
   </div>
   <div flex flex-col gap-3>
     <div k-card px-7 py-5 flex items-center gap-5>
@@ -911,6 +909,13 @@ clicks: 2
         <div mt-1 text-sm text-muted>给你的 Agent 用，不只是给 Memoh 用</div>
       </div>
     </div>
+    <div v-click="3" k-card px-7 py-5 flex items-center gap-5>
+      <span font-mono text-xs text-subtle w-14 shrink-0>再往后</span>
+      <div>
+        <div text-base font-semibold>逐步开源</div>
+        <div mt-1 text-sm text-muted>把这些技术一点点开源出来</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -918,6 +923,7 @@ clicks: 2
 今天 Kibotos 还只服务 Memoh 自己，没有对外开放。它承载着 Memoh 的全部云电脑。
 [click] 12 月我们会开放 Early Access，小范围免费体验，感兴趣的可以进群申请。
 [click] 再往后，它会成为一个对外的服务，而不只是服务于 Memoh。
+[click] 最后，我们也会把这些技术逐步开源出来，就像 Memoh 一样。
 -->
 
 ---
