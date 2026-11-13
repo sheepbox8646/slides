@@ -243,21 +243,19 @@ clicks: 4
 ---
 
 <div text-center>
-  <h1 k-title>数千台云电脑，跑在个位数台机器上</h1>
-  <div mt-2 text-base text-muted>Memoh 上线两个多月的线上数据</div>
+  <h1 k-title>Memoh 公测的这段时间</h1>
+  <div mt-2 text-base text-muted>上线两个多月，一些数字</div>
 </div>
 
-<div mt-10 grid grid-cols-4 gap-3>
+<div mt-10 grid grid-cols-3 gap-3>
   <div v-for="(s, i) in [
-      { v: '近 4000', u: '台', d: '存活的云电脑', n: '7 成以上处在冷暂停' },
-      { v: '数千', u: '个', d: '服务的团队', n: '10 月新增是 9 月的近 3 倍' },
-      { v: '近万', u: 'vCPU', d: '已经卖出去的算力', n: '另有 10 TB+ 内存' },
-      { v: '个位数', u: '台', d: '承载它们的计算机器', n: '存储池单独部署' },
-    ]" :key="s.d" v-click="i + 1" k-card px-5 py-6 flex flex-col
-    :class="i === 3 ? 'k-tint' : ''"
+      { v: '数千', u: '台', d: '用户创建的云电脑', n: '每个 Bot 一台自己的电脑' },
+      { v: '数千', u: '个', d: '在用的团队', n: '个人开发者为主' },
+      { v: '近 3', u: '倍', d: '10 月新增 / 9 月新增', n: '还在涨' },
+    ]" :key="s.d" v-click="i + 1" k-card px-6 py-6 flex flex-col
   >
     <div flex items-baseline gap-1>
-      <span text-4xl font-bold tracking-tight :class="i === 3 ? 'text-primary' : ''">{{ s.v }}</span>
+      <span text-4xl font-bold tracking-tight>{{ s.v }}</span>
       <span text-sm text-muted>{{ s.u }}</span>
     </div>
     <div mt-3 text-sm>{{ s.d }}</div>
@@ -265,12 +263,17 @@ clicks: 4
   </div>
 </div>
 
+<div v-click="4" mt-8 text-center text-lg>
+  跑了一段时间，我们在监控里看到一件<span text-primary font-semibold>有意思</span>的事。
+</div>
+
 <!--
-答案就藏在我们的线上数据里。
-[click] 现在有将近 4000 台存活的云电脑，七成以上在冷暂停。
-[click] 服务了数千个团队，10 月的新增是 9 月的将近三倍。
-[click] 我们卖出去了将近一万个 vCPU、超过 10 TB 内存。
-[click] 而承载它们的计算机器，只有个位数台。
+Memoh 九月开始公测，到现在两个多月，分享几个数字。
+[click] 用户已经创建了数千台云电脑，每个 Bot 一台自己的电脑。
+[click] 在用的团队也有数千个。
+[click] 增长还不错，10 月的新增大概是 9 月的三倍。
+[click] 跑了一段时间之后，我们在监控里看到一件有意思的事。
+【待确认】“个人开发者为主”是我的推测，讲者确认后再保留。
 -->
 
 ---
@@ -280,39 +283,39 @@ clicks: 3
 ---
 
 <div text-center>
-  <h1 k-title>卖出去近万个核，真正在干活的不到一百个</h1>
+  <h1 k-title>Agent 电脑的真实占用，和 VPS 很不一样</h1>
+  <div mt-2 text-base text-muted>运行中的云电脑，实际用掉的资源占分配量的比例</div>
 </div>
 
 <div mt-8 grid grid-cols-2 gap-3>
   <div k-card px-7 py-6>
     <div k-kicker>CPU</div>
-    <BarChart :row-height="46" label="CPU 资源漏斗" :rows="[
-      { name: '卖出去的', value: 9000, label: '近万 vCPU' },
-      { name: '正在运行的', value: 3000, label: '约 3000' },
-      { name: '真正在干活的', value: 70, label: '< 100', highlight: true },
+    <BarChart :row-height="46" label="CPU：分配与实际使用" :rows="[
+      { name: '分配给它的', value: 100, label: '100%' },
+      { name: '实际用掉的', value: 1, label: '中位数 < 1%', highlight: true },
     ]" />
   </div>
   <div k-card px-7 py-6>
     <div k-kicker>内存</div>
-    <BarChart :row-height="46" label="内存资源漏斗" :rows="[
-      { name: '卖出去的', value: 11, label: '> 10 TB' },
-      { name: '正在运行的', value: 4, label: '约 4 TB' },
-      { name: '宿主真实占用', value: 2.0, label: '约 2 TB', highlight: true },
+    <BarChart :row-height="46" label="内存：分配与实际使用" :rows="[
+      { name: '分配给它的', value: 100, label: '100%' },
+      { name: '实际用掉的', value: 22, label: '约两成', highlight: true },
     ]" />
   </div>
 </div>
 
 <div mt-6 grid grid-cols-3 gap-3>
-  <div v-click="1" text-center><div text-3xl font-bold>&lt; 1%</div><div mt-1 text-xs text-muted>运行中电脑的 CPU 利用率中位数</div></div>
-  <div v-click="2" text-center><div text-3xl font-bold text-primary>20 多倍</div><div mt-1 text-xs text-muted>卖出的 vCPU / 物理线程</div></div>
-  <div v-click="3" text-center><div text-3xl font-bold>3 倍多</div><div mt-1 text-xs text-muted>卖出的内存 / 物理内存</div></div>
+  <div v-click="1" text-center><div text-xl font-bold>VPS 上跑的是服务</div><div mt-1 text-xs text-muted>7×24 在线，负载相对平稳</div></div>
+  <div v-click="2" text-center><div text-xl font-bold text-primary>Agent 电脑大部分时间在等</div><div mt-1 text-xs text-muted>等模型返回，等用户回消息</div></div>
+  <div v-click="3" text-center><div text-xl font-bold>忙起来又很突然</div><div mt-1 text-xs text-muted>编译、装依赖、跑浏览器，然后又安静下来</div></div>
 </div>
 
 <!--
-这是全场最重要的一页。我们卖出去将近一万个核，正在运行的大约三千个，真正在干活的不到一百个。内存也一样，卖出去十几 TB，宿主上真正占用的只有 2 TB 左右。
-[click] 运行中的电脑，CPU 利用率的中位数不到 1%。
-[click] 换算到物理机，卖出去的 vCPU 是物理线程数的 20 多倍。
-[click] 内存是 3 倍多。用户买的是一台随时都在的电脑，真正消耗的远远小于分配量。
+这是我们在监控里看到的：运行中的云电脑，CPU 利用率的中位数不到 1%，内存实际用到的大概是分配量的两成。
+[click] 这和传统 VPS 很不一样。VPS 上一般跑的是 7×24 在线的服务，负载相对平稳。
+[click] Agent 电脑大部分时间在等：等模型返回，等用户回消息。
+[click] 忙起来又很突然：编译、装依赖、开浏览器，跑完又安静下来。这个负载形态，决定了我们后面所有的设计。
+注：CPU 为运行中 VM 的 guest CPU 利用率中位数；内存为 guest 内已用内存 / 分配内存，取自 2026-11 的采样。
 -->
 
 ---
@@ -325,13 +328,14 @@ section: 03 · Kibotos
 ---
 glow: r
 section: 03 · Kibotos
-clicks: 4
+clicks: 3
 ---
 
 <div grid grid-cols-2 items-center h-full gap-6>
   <div>
     <img src="/brand/kibotos-lockup-dark.svg" alt="Kibotos" w-40 />
     <div mt-6 text-xl font-bold leading-snug>为 AI Agent 打造的 microVM 执行栈，<br/>跑在我们自己的裸金属上。</div>
+    <div mt-3 text-sm text-muted>目前承载着 Memoh 的全部云电脑。</div>
     <div mt-7 flex flex-col gap-2>
       <div v-for="(k, i) in [
           ['隔离', 'microVM · Firecracker / 自研 KiboVM'],
@@ -341,11 +345,6 @@ clicks: 4
         <span text-subtle>{{ k[0] }}</span><span font-mono class="text-[#e6e6e5]">{{ k[1] }}</span>
       </div>
     </div>
-    <div v-click="4" mt-8 flex items-center gap-3 text-xs text-muted>
-      <span font-mono>2026.07</span><span>E2B SaaS</span><span text-subtle>→</span>
-      <span font-mono>2026.08</span><span>自建 E2B</span><span text-subtle>→</span>
-      <span font-mono text-primary>2026.09</span><span text-white>Kibotos</span>
-    </div>
   </div>
   <div h-100 flex>
     <HeroStack />
@@ -353,11 +352,10 @@ clicks: 4
 </div>
 
 <!--
-这就是 Kibotos：一个为 AI Agent 打造的 microVM 执行栈，跑在我们自己的裸金属上。
+这就是 Kibotos：一个为 AI Agent 打造的 microVM 执行栈，跑在我们自己的裸金属上。现在 Memoh 的每一台云电脑都跑在它上面。
 [click] 每台电脑是一台 microVM，后端可以是 Firecracker，也可以是我们自研的 KiboVM。
 [click] 电脑不开着的时候，文件也还在。
 [click] 闲着就冷暂停，有人访问再拉起来。
-[click] 我们 7 月用 E2B 的 SaaS，8 月自建了 E2B，9 月切到了 Kibotos。
 【待补】为什么决定自己造，一句话的真实原因。
 -->
 
@@ -973,103 +971,15 @@ clicks: 2
 -->
 
 ---
-glow: tr
-section: 07 · 东京
----
-
-<SectionCover no="7.0" top="在东京" bottom="自建集群." />
-
----
-glow: bl
-section: 07 · 东京
-clicks: 3
----
-
-<div grid class="grid-cols-[0.85fr_1.15fr]" gap-6 h-full items-center>
-  <div>
-    <div k-kicker>集群长什么样</div>
-    <h1 k-title mt-3>计算和存储，<br/>分开部署</h1>
-    <div mt-6 flex flex-col gap-3 text-sm>
-      <div v-click="1" class="grid grid-cols-[72px_1fr]"><span text-subtle>计算机器</span><span>每台约 64 线程、512 GB 内存，只有一块系统盘，<span text-white>只跑 VM，不存数据</span></span></div>
-      <div v-click="2" class="grid grid-cols-[72px_1fr]"><span text-subtle>存储池</span><span>独立的存储机，每台 4×8 TB 机械盘 + SSD，放所有可写层和 /data 卷</span></div>
-      <div v-click="3" class="grid grid-cols-[72px_1fr]"><span text-subtle>好处</span><span>计算机器挂了，数据还在；内存不够加计算，盘不够加存储</span></div>
-    </div>
-  </div>
-  <div h-90 flex>
-    <ClusterFigure :compute="6" />
-  </div>
-</div>
-
-<!--
-这是我们在东京的集群。
-[click] 计算机器每台大约 64 线程、512 GB 内存，只有一块系统盘，只跑 VM，不存用户数据。
-[click] 存储池是独立的机器，放所有电脑的可写层和数据卷。
-[click] 好处是计算机器挂了数据还在，VM 换一台就能起来；计算和存储也能各自扩容。
--->
-
----
-glow: r
-section: 07 · 东京
-clicks: 3
----
-
-<div grid class="grid-cols-[0.85fr_1.15fr]" gap-6 h-full items-center>
-  <div>
-    <div k-kicker>扩容</div>
-    <h1 k-title mt-3>从个位数台，<br/>到 16 台计算机器</h1>
-    <div mt-6 flex flex-col gap-4>
-      <div v-click="1" flex gap-4>
-        <span font-mono text-xs text-subtle pt-1 w-12 shrink-0>现在</span>
-        <span text-sm>个位数台计算机器 + 一组存储机，承载近 4000 台云电脑</span>
-      </div>
-      <div v-click="2" flex gap-4>
-        <span font-mono text-xs text-primary pt-1 w-12 shrink-0>下一步</span>
-        <span text-sm>新一批机器在东京上架：再加 10 台计算机器、3 台存储机，存储裸容量近 100 TB</span>
-      </div>
-    </div>
-    <div v-click="3" mt-8 text-lg font-semibold leading-snug>我们的扩容不是在控制台点一下，<br/><span text-primary>而是把机器搬进机房。</span></div>
-  </div>
-  <div h-90 flex>
-    <ClusterFigure :compute="$clicks >= 2 ? 16 : 6" />
-  </div>
-</div>
-
-<!--
-[click] 现在是个位数台计算机器加一组存储机，承载了将近 4000 台云电脑。
-[click] 新一批机器马上在东京上架：再加 10 台计算机器、3 台存储机，计算机器到 16 台，存储接近 100 TB。
-[click] 我们的扩容不是在控制台点一下，而是把机器搬进机房。
--->
-
----
-glow: tl
-section: 07 · 东京
----
-
-<div text-center>
-  <h1 k-title>上架的那些事</h1>
-  <div mt-2 text-base text-muted>【待补：讲者亲历】</div>
-</div>
-
-<div mt-10 grid grid-cols-3 gap-3>
-  <div v-for="q in ['为什么选东京', '机器怎么来的，多久回本', '上架和网络踩过的坑', '哪一刻觉得“还好没上云”', '几个人在运维']" :key="q" k-card px-6 py-5 text-sm text-muted>
-    {{ q }}
-  </div>
-</div>
-
-<!--
-【待补】这一页是占位：讲者按亲历补故事，每条一两句即可。
--->
-
----
 glow: br
-section: 08 · 战绩
+section: 07 · 战绩
 ---
 
-<SectionCover no="8.0" top="一些" bottom="战绩." />
+<SectionCover no="7.0" top="一些" bottom="战绩." />
 
 ---
 glow: c
-section: 08 · 战绩
+section: 07 · 战绩
 clicks: 6
 ---
 
@@ -1102,6 +1012,246 @@ clicks: 6
 -->
 
 ---
+glow: tr
+section: 08 · 自建集群
+---
+
+<SectionCover no="8.0" top="我们如何" bottom="自建这个集群." />
+
+<!--
+讲完数字，讲讲这些机器是怎么来的。
+-->
+
+---
+glow: l
+section: 08 · 自建集群
+clicks: 3
+---
+
+<div grid class="grid-cols-[0.9fr_1.1fr]" gap-8 h-full items-center>
+  <div>
+    <div k-kicker>第一站</div>
+    <h1 k-title mt-3>先在上海，<br/>把机器跑起来</h1>
+    <div mt-6 flex flex-col gap-3 text-sm>
+      <div v-click="1" flex gap-3><span font-mono text-primary>01</span><span>Memoh 刚上线，来不及去海外建机房</span></div>
+      <div v-click="2" flex gap-3><span font-mono text-primary>02</span><span>先在上海部署了 <span text-white font-semibold>6 台</span>机器，加一组存储池</span></div>
+      <div v-click="3" flex gap-3><span font-mono text-primary>03</span><span>出口走<span text-white font-semibold>跨境专线</span>，从东京出去</span></div>
+    </div>
+    <div v-click="3" mt-7 k-card px-5 py-4 flex items-center gap-3 text-sm>
+      <span font-mono class="text-[#e6e6e5]">上海</span>
+      <span flex-1 class="border-t border-dashed border-primary/60" />
+      <span text-xs text-muted>跨境专线</span>
+      <span flex-1 class="border-t border-dashed border-primary/60" />
+      <span font-mono class="text-[#e6e6e5]">东京出口</span>
+      <span text-subtle>→</span>
+      <span text-muted>全球用户</span>
+    </div>
+  </div>
+  <div k-card p-3 h-100 overflow-hidden>
+    <img src="/story/servers.jpg" alt="上海机房的服务器" w-full h-full object-cover rounded-2xl />
+  </div>
+</div>
+
+<!--
+Memoh 刚上线的时候，我们没时间去海外建机房。
+[click] 所以先在上海部署。
+[click] 现在上海一共 6 台机器，加一组独立的存储池。
+[click] 出口走的是跨境专线，从东京出去。所以有些同学可能发现，Memoh 连到上海这边很快，跨境的速度也不错。
+-->
+
+---
+glow: bl
+section: 08 · 自建集群
+clicks: 3
+---
+
+<div grid class="grid-cols-[0.85fr_1.15fr]" gap-6 h-full items-center>
+  <div>
+    <div k-kicker>上海 · 集群长什么样</div>
+    <h1 k-title mt-3>计算和存储，<br/>分开部署</h1>
+    <div mt-6 flex flex-col gap-3 text-sm>
+      <div v-click="1" class="grid grid-cols-[72px_1fr]"><span text-subtle>计算机器</span><span>每台约 64 线程、512 GB 内存，只有一块系统盘，<span text-white>只跑 VM，不存数据</span></span></div>
+      <div v-click="2" class="grid grid-cols-[72px_1fr]"><span text-subtle>存储池</span><span>独立的存储机，每台 4×8 TB 机械盘 + SSD，放所有可写层和 /data 卷</span></div>
+      <div v-click="3" class="grid grid-cols-[72px_1fr]"><span text-subtle>好处</span><span>计算机器挂了，数据还在；内存不够加计算，盘不够加存储</span></div>
+    </div>
+  </div>
+  <div h-90 flex>
+    <ClusterFigure :compute="6" />
+  </div>
+</div>
+
+<!--
+上海这几台机器的架构是这样的。
+[click] 计算机器每台大约 64 线程、512 GB 内存，只有一块系统盘，只跑 VM，不存用户数据。
+[click] 存储池是独立的机器，放所有电脑的可写层和数据卷。
+[click] 好处是计算机器挂了数据还在，VM 换一台就能起来；计算和存储也能各自扩容。
+-->
+
+---
+glow: tr
+section: 08 · 自建集群
+clicks: 1
+---
+
+<div grid class="grid-cols-[0.8fr_1.2fr]" gap-8 h-full items-center>
+  <div>
+    <div k-kicker>第二批</div>
+    <h1 k-title mt-3>又买了 15 台</h1>
+    <div mt-6 flex flex-col gap-3 text-sm>
+      <div class="grid grid-cols-[72px_1fr]"><span text-subtle>宿主机</span><span><span text-white font-semibold>12 台</span>，和上海同规格</span></div>
+      <div class="grid grid-cols-[72px_1fr]"><span text-subtle>存储池</span><span><span text-white font-semibold>3 台</span>，NVMe + 大容量机械盘</span></div>
+      <div v-click="1" class="grid grid-cols-[72px_1fr]"><span text-subtle>目的地</span><span>Equinix, Tokyo</span></div>
+    </div>
+  </div>
+  <div grid grid-cols-2 gap-3 h-100>
+    <div k-card p-2 overflow-hidden row-span-2>
+      <img src="/story/boxes.jpg" alt="到货的服务器纸箱" w-full h-full object-cover rounded-2xl />
+    </div>
+    <div k-card p-2 overflow-hidden>
+      <img src="/story/unboxing.jpg" alt="拆箱中的服务器" w-full h-full object-cover rounded-2xl />
+    </div>
+    <div k-card p-2 overflow-hidden>
+      <img src="/story/ssd.jpg" alt="一排企业级 NVMe SSD" w-full h-full object-cover rounded-2xl />
+    </div>
+  </div>
+</div>
+
+<!--
+后来我们又采购了一批，大概 15 台：12 台宿主机、3 台存储池，规格和上海一样。
+[click] 它们的目的地是东京的 Equinix 机房。
+-->
+
+---
+glow: none
+section: 08 · 自建集群
+footer: false
+clicks: 0
+---
+
+<div class="absolute inset-0 overflow-hidden">
+  <img src="/story/ram.jpg" alt="四盒内存条" w-full h-full object-cover />
+</div>
+
+<!--
+（停一下，让大家看照片。）
+这是这批机器配的内存，四盒。今年内存价格涨得很厉害，买的时候真的挺心疼的。
+这也是为什么前面我们花那么多力气去回收内存、把内存利用率做高。
+-->
+
+---
+glow: tr
+section: 08 · 自建集群
+clicks: 2
+---
+
+<div text-center>
+  <h1 k-title>接下来，更多地区</h1>
+  <div mt-2 text-base text-muted>我们在亚太和北美还有一些合作的数据中心。</div>
+</div>
+
+<div mt-2 mx-auto w-150>
+  <WorldMap :regions="[
+      { id: 'sh', name: '上海', lon: 121.47, lat: 31.23, label: 'left' },
+      { id: 'tyo', name: '东京', lon: 139.69, lat: 35.68, label: 'right', soon: $clicks < 1 },
+      { id: 'sg', name: '新加坡 · 新山', lon: 103.8, lat: 1.4, label: 'bottom', soon: true },
+      { id: 'kl', name: '吉隆坡', lon: 101.69, lat: 3.14, label: 'left', soon: true },
+      { id: 'sf', name: '旧金山', lon: -122.42, lat: 37.77, label: 'right', soon: true },
+    ]" :backbone="[['sh', 'tyo'], ['tyo', 'sf'], ['sh', 'sg'], ['sg', 'kl']]" />
+</div>
+
+<div mt-5 grid grid-cols-3 gap-3 text-sm>
+  <div k-card px-5 py-3><div text-xs text-subtle>运行中</div><div mt-1>上海</div></div>
+  <div v-click="1" k-card px-5 py-3 class="k-tint"><div text-xs text-subtle>11 月 20 日上架</div><div mt-1>东京</div></div>
+  <div v-click="2" k-card px-5 py-3><div text-xs text-subtle>合作数据中心 · 规划中</div><div mt-1>新加坡、吉隆坡、新山、旧金山</div></div>
+</div>
+
+<!--
+现在跑着的是上海。
+[click] 20 号东京上架。
+[click] 我们在新加坡、吉隆坡、新山，还有旧金山，也有一些合作的数据中心，未来会把机器扩到这些地区。
+有了这些机器，下一步就是把 Kibotos 开放出去。
+-->
+
+---
+glow: tl
+section: 09 · 下一步
+clicks: 2
+---
+
+<div grid class="grid-cols-[0.9fr_1.1fr]" gap-8 h-full items-center>
+  <div>
+    <div k-kicker>下一步</div>
+    <h1 k-title mt-3>今天，Kibotos<br/>只服务 Memoh</h1>
+    <div mt-5 text-base text-muted leading-relaxed>它还没有对外开放。<br/>接下来，我们会把它做成一个独立的服务。</div>
+  </div>
+  <div flex flex-col gap-3>
+    <div k-card px-7 py-5 flex items-center gap-5>
+      <span font-mono text-xs text-subtle w-14 shrink-0>现在</span>
+      <div>
+        <div text-base font-semibold>内部基础设施</div>
+        <div mt-1 text-sm text-muted>承载 Memoh 的全部云电脑，在真实负载上打磨</div>
+      </div>
+    </div>
+    <div v-click="1" k-card px-7 py-5 flex items-center gap-5 class="k-tint">
+      <span font-mono text-xs text-primary w-14 shrink-0>2026.12</span>
+      <div>
+        <div text-base font-semibold>Early Access</div>
+        <div mt-1 text-sm text-muted>小范围开放，免费体验，进群申请</div>
+      </div>
+    </div>
+    <div v-click="2" k-card px-7 py-5 flex items-center gap-5>
+      <span font-mono text-xs text-subtle w-14 shrink-0>之后</span>
+      <div>
+        <div text-base font-semibold>对外服务</div>
+        <div mt-1 text-sm text-muted>给你的 Agent 用，不只是给 Memoh 用</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+讲到这里要说明一下：今天 Kibotos 还只服务 Memoh 自己，没有对外开放。它承载着 Memoh 的全部云电脑，在真实负载上一直在打磨。
+[click] 12 月我们会开放 Early Access，小范围免费体验，感兴趣的可以进群申请。
+[click] 再往后，它会成为一个对外的服务，给你的 Agent 用，而不只是给 Memoh 用。
+-->
+
+---
+glow: r
+section: 09 · 下一步
+clicks: 2
+---
+
+<div k-card grid class="grid-cols-[0.8fr_1.2fr]" gap-8 px-9 py-9 h-full>
+  <div flex flex-col>
+    <div k-kicker>价格</div>
+    <div mt-3 text-2xl font-bold leading-snug>对外价格还在定，<br/>但成本可以压到<span text-primary>很低</span>。</div>
+    <div mt-6 flex flex-col gap-3 text-sm text-muted>
+      <div v-click="1" flex gap-3><span font-mono text-primary>01</span><span>Agent 电脑的真实占用低，同一台机器能服务更多人</span></div>
+      <div v-click="1" flex gap-3><span font-mono text-primary>02</span><span>自己的裸金属，不为云厂商的高可用买单</span></div>
+      <div v-click="1" flex gap-3><span font-mono text-primary>03</span><span>冷启动、内存回收，闲着的电脑几乎不占资源</span></div>
+    </div>
+    <div v-click="2" mt-6 text-sm>Early Access 期间<span text-primary font-semibold>免费</span>体验。</div>
+    <div mt-auto text-xs text-subtle>一台 2C4G，每天活跃 2 小时，每月费用。</div>
+  </div>
+  <div flex items-center>
+    <BarChart :row-height="52" label="一台 2C4G 的月成本" :rows="[
+      { name: 'E2B · 常驻', value: 121, label: '$121' },
+      { name: 'AWS t3.medium', value: 30, label: '$30' },
+      { name: 'Hetzner · 常驻', value: 21, label: '$21' },
+      { name: 'E2B · 按需', value: 10, label: '$10' },
+      { name: 'Kibotos', value: 2, label: '?', highlight: $clicks >= 2 },
+    ]" />
+  </div>
+</div>
+
+<!--
+大家肯定会问：对外卖多少钱？说实话，价格我们还在定。
+[click] 但可以透露的是，成本能压到很低：Agent 电脑真实占用低，同一台机器能服务更多人；用的是自己的裸金属，不为云厂商的高可用买单；冷启动加内存回收，闲着的电脑几乎不占资源。
+[click] 具体价格，等正式对外服务的时候再公布。Early Access 期间是免费的，欢迎大家先来用。
+注：不要在台上报具体数字或倍数，也不要说 Early Access 会定价。
+-->
+
+---
 glow: c
 section: Kibotos
 clicks: 1
@@ -1121,7 +1271,7 @@ clicks: 1
 
 <!--
 给你的 Agent 一个应许之地。
-[click] Kibotos 将在 2026 年 12 月开放 Early Access。谢谢大家。
+[click] Kibotos 将在 2026 年 12 月开放 Early Access，期间免费体验。谢谢大家。
 -->
 
 ---
@@ -1143,17 +1293,18 @@ clicks: 0
     </div>
     <div k-card px-9 pt-8 pb-7 flex flex-col items-center class="reveal k-tint" style="animation-delay: 120ms">
       <div bg-white rounded-2xl p-3>
-        <img src="/qr/group.svg" alt="加入预热群 二维码（占位）" w-48 h-48 block />
+        <img src="/qr/group.svg" alt="加入预热群 二维码：t.me/kibotos_community" w-48 h-48 block />
       </div>
       <div mt-6 flex items-center gap-2 text-lg font-semibold>
         <simple-icons-telegram class="text-[#26a5e4]" text-xl />
-        加入预热群
+        加入预热群，申请体验
       </div>
     </div>
   </div>
 </div>
 
 <!--
-想聊合作可以加我微信，想第一时间拿到 Early Access 可以进预热群。
-【待补】两个二维码目前是占位，指向 example.com，上台前替换 public/qr/founder.svg 和 public/qr/group.svg。
+想聊合作可以加我微信，想申请 Early Access 体验，可以进预热群。
+预热群二维码指向 https://t.me/kibotos_community。
+【待补】Contact Founder 的二维码还是占位（指向 example.com），上台前替换 public/qr/founder.svg。
 -->

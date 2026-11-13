@@ -67,6 +67,9 @@ importers:
       d3-ease:
         specifier: ^3.0.1
         version: 3.0.1
+      d3-geo:
+        specifier: ^3.1.1
+        version: 3.1.1
       d3-scale:
         specifier: ^4.0.2
         version: 4.0.2
@@ -79,6 +82,12 @@ importers:
       simple-icons:
         specifier: ^16.33.0
         version: 16.37.0
+      topojson-client:
+        specifier: ^3.1.0
+        version: 3.1.0
+      world-atlas:
+        specifier: ^2.0.2
+        version: 2.0.2
 
 packages:
 
@@ -1366,6 +1375,9 @@ packages:
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
 
+  commander@2.20.3:
+    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+
   commander@7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
@@ -2573,6 +2585,10 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
+  topojson-client@3.1.0:
+    resolution: {integrity: sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==}
+    hasBin: true
+
   totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
@@ -2883,6 +2899,9 @@ packages:
 
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
+
+  world-atlas@2.0.2:
+    resolution: {integrity: sha512-IXfV0qwlKXpckz1FhwXVwKRjiIhOnWttOskm5CtxMsjgE/MXAYRHWJqgXOpM8IkcPBoXnyTU5lFHcYa5ChG0LQ==}
 
   wrap-ansi@9.0.2:
     resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
@@ -4469,6 +4488,8 @@ snapshots:
 
   comma-separated-tokens@2.0.3: {}
 
+  commander@2.20.3: {}
+
   commander@7.2.0: {}
 
   commander@8.3.0: {}
@@ -5886,6 +5907,10 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
+  topojson-client@3.1.0:
+    dependencies:
+      commander: 2.20.3
+
   totalist@3.0.1: {}
 
   trim-lines@3.0.1: {}
@@ -6221,6 +6246,8 @@ snapshots:
       typescript: 5.9.3
 
   webpack-virtual-modules@0.6.2: {}
+
+  world-atlas@2.0.2: {}
 
   wrap-ansi@9.0.2:
     dependencies:
