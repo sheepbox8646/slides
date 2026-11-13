@@ -6,6 +6,7 @@ import layout from '../data/landscape.json'
 // step 0: classics only (E2B + VPS camp), on-demand pricing
 // step 1: every vendor, on-demand pricing
 // step 2: every vendor, 24 h always-on pricing (points slide right)
+const base = import.meta.env.BASE_URL
 const props = withDefaults(defineProps<{ step?: number }>(), { step: 2 })
 
 type P = (typeof layout.modes.ondemand)[number]
@@ -69,7 +70,7 @@ const COLOR: Record<string, string> = { Sandbox: '#809aef', VPS: '#f6efe5', Hybr
             :stroke="COLOR.Hybrid" class="ring" stroke-linejoin="round"
           />
           <circle v-else r="12" :stroke="COLOR.Sandbox" class="ring" />
-          <image :href="p.logo" x="-9" y="-9" width="18" height="18" style="clip-path: inset(0 round 4px)" />
+          <image :href="base + p.logo.replace(/^\//, '')" x="-9" y="-9" width="18" height="18" style="clip-path: inset(0 round 4px)" />
         </g>
         <text
           class="lbl"

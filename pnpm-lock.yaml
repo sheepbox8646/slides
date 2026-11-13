@@ -53,7 +53,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared
 
-  slides/2026-11-12:
+  slides/2026-11-15:
     dependencies:
       '@fontsource/fira-code':
         specifier: ^5.3.0

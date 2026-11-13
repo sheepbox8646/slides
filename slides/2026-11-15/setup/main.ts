@@ -8,4 +8,10 @@ import '@fontsource/poppins/600.css'
 import '@fontsource/poppins/700.css'
 import '@fontsource/fira-code/400.css'
 
-export default defineAppSetup(() => {})
+// `$asset('/logos/x.svg')` resolves a public/ path against the deploy base (e.g. /2026-11-15/).
+// Static src="/..." attributes are rewritten by Vite; bound :src values are not, so use this for them.
+export const asset = (path: string) => import.meta.env.BASE_URL + path.replace(/^\//, '')
+
+export default defineAppSetup(({ app }) => {
+  app.config.globalProperties.$asset = asset
+})

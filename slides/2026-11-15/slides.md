@@ -121,7 +121,7 @@ clicks: 3
     :class="i > 0 ? 'border-l border-white/[0.06]' : ''"
   >
     <div class="iso-stage rounded-[14px]" h-20 flex items-center justify-center>
-      <img v-if="c.logo" :src="c.logo" w-9 h-9 />
+      <img v-if="c.logo" :src="$asset(c.logo)" w-9 h-9 />
       <simple-icons-claude v-else class="text-4xl text-[#d97757]" />
     </div>
     <div mt-4 text-base font-semibold>{{ c.name }}</div>
@@ -424,7 +424,7 @@ clicks: 4
       :class="i > 0 ? 'border-t border-white/[0.06]' : ''"
     >
       <div class="iso-stage" rounded-lg w-10 h-10 flex items-center justify-center shrink-0>
-        <img :src="r.logo" w-5 h-5 />
+        <img :src="$asset(r.logo)" w-5 h-5 />
       </div>
       <div flex-1>
         <div text-sm font-semibold>{{ r.name }}</div>
@@ -473,7 +473,7 @@ clicks: 3
       :class="i > 0 ? 'border-t border-white/[0.06]' : ''"
     >
       <div class="iso-stage" rounded-lg w-10 h-10 flex items-center justify-center shrink-0>
-        <img :src="r.logo" w-5 h-5 />
+        <img :src="$asset(r.logo)" w-5 h-5 />
       </div>
       <div>
         <div text-sm font-semibold>{{ r.name }}</div>

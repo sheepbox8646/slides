@@ -1,0 +1,17 @@
+// Cloudflare Workers deployment for every deck in this repo.
+// Build: pnpm run build   (writes dist/, one sub-directory per deck)
+// Deploy: npx wrangler deploy
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "slides",
+  "compatibility_date": "2026-11-01",
+  // Only runs when no static file matched: SPA fallback for deep links inside a deck.
+  "main": "./worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // /2026-11-15 redirects to /2026-11-15/ and serves its index.html.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}
