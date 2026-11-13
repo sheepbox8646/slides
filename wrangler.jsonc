@@ -1,10 +1,14 @@
 // Cloudflare Workers deployment for every deck in this repo.
-// Build: pnpm run build   (writes dist/, one sub-directory per deck)
-// Deploy: npx wrangler deploy
+// Deploy: npx wrangler deploy   (runs `pnpm run build` first via build.command)
 {
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "slides",
   "compatibility_date": "2026-11-01",
+  // wrangler deploy / wrangler dev run this first, so no separate build step is needed on Cloudflare.
+  "build": {
+    "command": "pnpm run build",
+    "watch_dir": ["slides", "packages", "scripts"]
+  },
   // Only runs when no static file matched: SPA fallback for deep links inside a deck.
   "main": "./worker.js",
   "assets": {

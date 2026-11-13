@@ -6,8 +6,8 @@
   "packageManager": "pnpm@10.27.0",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "preview": "pnpm run build && npx wrangler dev",
-    "deploy": "pnpm run build && npx wrangler deploy"
+    "preview": "npx wrangler dev",
+    "deploy": "npx wrangler deploy"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.2.19",
