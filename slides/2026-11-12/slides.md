@@ -272,7 +272,7 @@ Memoh 九月开始公测，到现在两个多月，
 [click] 用户已经创建了数千台云电脑。
 [click] 在用的团队也有数千个。
 [click] 我们 10 月的新增大概是 9 月的三倍。
-[click] 然后我们通过监控发现了一些有意思的事情。
+[click] 于是我们通过监控发现了一些有意思的事情。
 -->
 
 ---
@@ -333,13 +333,13 @@ section: 03 · Kibotos
 ---
 glow: r
 section: 03 · Kibotos
-clicks: 3
+clicks: 1
 ---
 
 <div grid grid-cols-2 items-center h-full gap-6>
   <div>
     <img src="/brand/kibotos-lockup-dark.svg" alt="Kibotos" w-40 />
-    <div mt-6 text-xl font-bold leading-snug>为 AI Agent 打造的 microVM 执行栈，<br/>跑在我们自己的裸金属上。</div>
+    <div mt-6 text-xl font-bold leading-snug>高性能，高利用率的Agent Sandbox集群</div>
   </div>
   <div h-100 flex>
     <HeroStack />
@@ -347,7 +347,7 @@ clicks: 3
 </div>
 
 <!--
-这就是 Kibotos：一个为 Agent 打造的运行环境服务。现在 Memoh 的每一台云电脑都跑在它上面。
+这就是 Kibotos：高性能，高利用率的Agent Sandbox集群。现在 Memoh 的每一台云电脑都跑在它上面。
 -->
 
 ---
@@ -360,7 +360,6 @@ section: 04 · 两派
 ---
 glow: tr
 section: 04 · 两派
-clicks: 2
 ---
 
 <div text-center>
@@ -525,7 +524,7 @@ clicks: 2
     <div class="border-t border-white/[0.07]" mt-5 pt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm>
       <div flex gap-2><span font-mono text-primary>01</span><span>文件是否持久化</span></div>
       <div flex gap-2><span font-mono text-primary>02</span><span>网络是否完整</span></div>
-      <div flex gap-2><span font-mono text-primary>03</span><span>有没有完整的 rootfs</span></div>
+      <div flex gap-2><span font-mono text-primary>03</span><span>有没有完整的 root 权限</span></div>
       <div flex gap-2><span font-mono text-primary>04</span><span>能不能常驻</span></div>
     </div>
     <div mt-4 text-xs text-subtle leading-relaxed>实现方案：完整虚拟机、Firecracker 这类 microVM、纯容器，都有。</div>
@@ -542,7 +541,7 @@ clicks: 2
 我们主要看这几个指标：
 1. 文件是否持久化
 2. 网络是否完整
-3. 有没有完整的 rootfs、
+3. 有没有完整的 root 权限
 4. 能不能常驻。
 -->
 
